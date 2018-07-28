@@ -1,0 +1,80 @@
+//
+//  HKView.swift
+//  HelpKit
+//
+//  Created by Patrick Hanna on 7/17/18.
+//  Copyright © 2018 Patrick Hanna. All rights reserved.
+//
+
+import UIKit
+
+open class HKView: UIView {
+    
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+        setUpView()
+    }
+    
+    public init(){
+        super.init(frame: CGRect.zero)
+        setUpView()
+    }
+    
+    /// This function should NEVER be called directly. It should only be overriden.
+    open func setUpView(){
+        
+        
+    }
+    
+    
+    open var layoutSubviewsAction = {}
+    open var touchesDidBeginAction = {}
+    open var touchesDidEndAction = {}
+    open var touchesDidCancelAction = {}
+    open var didMoveToWindowAction = {}
+    open var didMoveToSuperviewAction = {}
+    
+    override open func layoutSubviews() {
+        super.layoutSubviews()
+        layoutSubviewsAction()
+    }
+    
+    
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        touchesDidBeginAction()
+    }
+    
+    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        touchesDidEndAction()
+    }
+    
+    override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        touchesDidCancelAction()
+    }
+    
+    
+    
+    open override func didMoveToWindow() {
+        super.didMoveToWindow()
+        didMoveToWindowAction()
+    }
+    
+    open override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        didMoveToSuperviewAction()
+    }
+    
+    
+    
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init coder has not been implemented")
+    }
+    
+}
+
+
+
