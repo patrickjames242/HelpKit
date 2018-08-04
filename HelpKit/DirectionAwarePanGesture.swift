@@ -15,7 +15,7 @@ import UIKit
 open class DirectionAwarePanGesture: UIPanGestureRecognizer{
     
     
-    private(set) var direction: ScrollingDirection?
+    open private(set) var direction: ScrollingDirection?
     
     private var touchesMovedWasAlreadyCalled = false
     

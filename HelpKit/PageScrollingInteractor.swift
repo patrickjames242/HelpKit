@@ -22,7 +22,7 @@ import UIKit
 
 open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
     private weak var view: UIView!
-    
+
     private weak var pageScrollingDelegate: PageScrollingInteractorDelegate!
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -36,7 +36,6 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
 
     
     public init(delegate: PageScrollingInteractorDelegate, direction: ScrollingDirection){
-
         self.scrollingDirection = direction
         self.view = delegate.view
         self.pageScrollingDelegate = delegate

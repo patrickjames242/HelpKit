@@ -33,10 +33,20 @@ open class HKView: UIView {
     open var touchesDidCancelAction = {}
     open var didMoveToWindowAction = {}
     open var didMoveToSuperviewAction = {}
+    open var willRemoveFromSuperViewAction = {}
     
+    open var pointInsideAction: ((_ point: CGPoint, _ event: UIEvent?) -> Bool)?
+    open var hitTestAction: ((_ point: CGPoint, _ event: UIEvent?) -> UIView?)?
+
     override open func layoutSubviews() {
         super.layoutSubviews()
         layoutSubviewsAction()
+    }
+    
+    open override func removeFromSuperview() {
+        willRemoveFromSuperViewAction()
+        super.removeFromSuperview()
+        
     }
     
     
@@ -65,6 +75,20 @@ open class HKView: UIView {
     open override func didMoveToSuperview() {
         super.didMoveToSuperview()
         didMoveToSuperviewAction()
+    }
+    
+    open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if let action = pointInsideAction{
+            return action(point, event)
+        }
+        return super.point(inside: point, with: event)
+    }
+    
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if let action = hitTestAction{
+            return action(point, event)
+        }
+        return super.hitTest(point, with: event)
     }
     
     

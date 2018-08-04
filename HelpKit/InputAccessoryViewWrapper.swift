@@ -18,7 +18,7 @@ open class InputAccessoryViewWrapper: HKView{
     open private(set) var backgroundView = UIView()
     
     
-    private var _intrinsicContentSize = CGSize()
+    private var _intrinsicContentSize: CGSize
     
     
     open override var intrinsicContentSize: CGSize{
@@ -46,9 +46,10 @@ open class InputAccessoryViewWrapper: HKView{
   
     public init(for view: UIView, width: CGFloat){
         wrappedView = view
+        _intrinsicContentSize = CGSize(width: width, height: 50)
+
         super.init(frame: CGRect(x: 0, y: 0, width: width, height: 50))
         autoresizingMask = .flexibleHeight
-        intrinsicContentSize = frame.size
         backgroundColor = .clear
         view.pin(addTo: self, anchors: [.width: widthAnchor, .bottom: safeAreaLayoutGuide.bottomAnchor])
         
@@ -74,9 +75,7 @@ open class InputAccessoryViewWrapper: HKView{
         invalidateIntrinsicContentSize()
     }
     
-    
-    
-    
+ 
     
     
     required public init?(coder aDecoder: NSCoder) {

@@ -8,6 +8,30 @@
 
 import UIKit
 
+
+
+
+
+extension UIGestureRecognizer{
+    
+    open func stopInterferingWithTouchesInView(){
+        cancelsTouchesInView = false
+        delaysTouchesBegan = false
+        delaysTouchesEnded = false
+    }
+    
+    open func beginInterferingWithTouchesInView(){
+        cancelsTouchesInView = true
+        delaysTouchesBegan = true
+        delaysTouchesEnded = true
+    }
+}
+
+
+
+
+
+
 extension CGPoint{
     
     public func offset(by x: CGFloat, y: CGFloat) -> CGPoint{
@@ -23,11 +47,6 @@ extension CGPoint{
         newPoint.y = self.y - previousPoint.y
         return newPoint
     }
-    
-    
-    
-    
-    
 }
 
 
@@ -39,6 +58,15 @@ extension UIViewController{
     
     open var statusBar: UIWindow{
         return UIApplication.shared.value(forKey: "statusBarWindow") as! UIWindow
+    }
+    
+    
+    
+}
+
+public func editKeyboardWindows(action: (UIWindow) -> Void){
+    for window in UIApplication.shared.windows where window !== UIApplication.shared.keyWindow{
+        action(window)
     }
 }
 

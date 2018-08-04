@@ -28,7 +28,7 @@ open class HKButtonTemplate: HKView{
     
     open var isEnabled = true
     
-    private var actions = [{}]
+    private var actions = [() -> Void]()
     
     public func addAction(_ action: @escaping () -> Void){
         self.actions.append(action)
@@ -65,12 +65,4 @@ open class HKButtonTemplate: HKView{
     open func tapEnded(){
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }

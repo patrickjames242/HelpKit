@@ -30,9 +30,6 @@ public class HKScrollView: UIScrollView{
         
         contentLayoutGuideWidthAnchor = contentLayoutGuidePins.width!
         contentLayoutGuideHeightAnchor = contentLayoutGuidePins.height!
-        
-        
-        
     }
     
     

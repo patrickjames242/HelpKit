@@ -13,7 +13,7 @@ import UIKit
 
 public struct EArray<Element>{
     
-   
+    
     
     private var storage = [Int: Element]()
     
@@ -27,7 +27,7 @@ public struct EArray<Element>{
     
     public var elements: [Element]{
         if storage.isEmpty { return [] }
-        var arrayToReturn: [Any] = Array(repeating: "y", count: storage.count)
+        var arrayToReturn: [Any] = Array(repeating: "x", count: storage.count)
         for i in 0...(storage.count - 1){
             arrayToReturn[i] = storage[i]!
         }
