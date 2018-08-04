@@ -91,7 +91,7 @@ public struct EArray<Element>{
 extension EArray: ExpressibleByArrayLiteral, CustomStringConvertible {
     
     public var description: String{
-        return storage.keys.description
+        return storage.values.description
     }
     
     

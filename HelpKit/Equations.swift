@@ -26,8 +26,12 @@ public struct xy<Number: BinaryFloatingPoint>: Equatable{
     /// Returns true if the array of points are valid to be used in an equation, and false if they are not valid.
  
     static func checkValidity(of points: [xy<Number>]) -> Bool{
-        for point in points{
-            if !points.filter({$0.x == point.x}).isEmpty{return false}
+        for (x, point) in points.enumerated(){
+            
+            var newArray = points
+            newArray.remove(at: x)
+            
+            if !newArray.filter({$0.x == point.x}).isEmpty{return false}
         }
         return true
     }
