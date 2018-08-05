@@ -147,7 +147,17 @@ extension UIColor {
 
 
 
-
+extension IndexPath{
+    
+    public func isLastInSection(for tableView: UITableView) -> Bool{
+        return self == IndexPath(row: tableView.numberOfRows(inSection: section) - 1, section: section)
+    }
+    
+    public func isFirstInSection() -> Bool{
+        return self.row == 0
+    }
+    
+}
 
 
 
@@ -179,10 +189,10 @@ extension UIEdgeInsets{
         self.init(top: allInsets, left: allInsets, bottom: allInsets, right: allInsets)
     }
     
-    public init(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0){
+    public init(hkTop: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0){
         
         self.init()
-        self.top = top
+        self.top = hkTop
         self.left = left
         self.bottom = bottom
         self.right = right

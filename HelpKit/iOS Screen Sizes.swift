@@ -23,3 +23,6 @@ public let iPad9_Landscape = CGSize(width: 1024, height: 768)
 public let iPad10_Landscape = CGSize(width: 1112, height: 834)
 public let iPad12_Landscape = CGSize(width: 1366, height: 1024)
 
+
+
+
