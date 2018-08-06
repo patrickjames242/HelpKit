@@ -33,12 +33,13 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
     
     
 
-
+  
     
     public init(delegate: PageScrollingInteractorDelegate, direction: ScrollingDirection){
         self.scrollingDirection = direction
         self.view = delegate.view
         self.pageScrollingDelegate = delegate
+        
         super.init()
         self.gesture = DirectionAwarePanGesture(target: self, action: #selector(respondToGesture(gesture:)))
         gesture.delegate = self
@@ -136,7 +137,7 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
     
     @objc private func respondToGesture(gesture: DirectionAwarePanGesture){
         if !self.isActive{return}
-
+        
         if onlyAcceptInteractionInSpecifiedDirection{
             if gesture.direction != self.scrollingDirection{return}
         }
@@ -245,6 +246,7 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
     private func reportGradientChangeTo(newGradientPointValue: CGFloat){
         self.currentGradientPointValue = newGradientPointValue
         pageScrollingDelegate.gradientDidChange(to: currentGradientPercentage, direction: scrollingDirection, interactor: self)
+        
     }
     
     
@@ -254,6 +256,8 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
         reportGradientSnappedTo(toScreen: toScreen, animationTime: time)
     }
     
+    
+    
     private func reportGradientSnappedTo(toScreen: ScreenType, animationTime: TimeInterval?) {
         let fromScreen = self.currentlyFullyVisibleScreen
         let action = {
@@ -261,7 +265,9 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
             self.reportGradientChangeTo(newGradientPointValue: toScreen.rawPointValue(for: self))
         }
         let completion: (Bool) -> Void = { _ in
-            self.pageScrollingDelegate.gradientDidSnap?(fromScreen: fromScreen, toScreen: toScreen, direction: self.scrollingDirection, interactor: self)
+            if self.currentGradientPointValue == toScreen.rawPointValue(for: self){
+                self.pageScrollingDelegate.gradientDidSnap?(fromScreen: fromScreen, toScreen: toScreen, direction: self.scrollingDirection, interactor: self)
+            }
         }
         if let time = animationTime{
             UIView.animate(withDuration: time, delay: 0, options: [.allowUserInteraction, .curveEaseOut], animations: action, completion: completion)
