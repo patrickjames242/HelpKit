@@ -139,7 +139,7 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
         if !self.isActive{return}
         
         if onlyAcceptInteractionInSpecifiedDirection{
-            if gesture.direction != self.scrollingDirection{return}
+            if gesture.scrollingDirection != self.scrollingDirection{return}
         }
 
 

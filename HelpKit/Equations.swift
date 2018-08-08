@@ -72,6 +72,7 @@ public class Equation<Number: BinaryFloatingPoint>{
         var val = performCalculation(for: x)
         if let min = min{
             val = Swift.max(val, min)
+
         }
         if let max = max{
             val = Swift.min(val, max)
@@ -90,7 +91,7 @@ public class LinearEquation<Number: BinaryFloatingPoint>: Equation<Number>{
     public convenience init?(_ c1: xy<Number>, _ c2: xy<Number>, min: Number? = nil, max: Number? = nil){
         if !xy.checkValidity(of: [c1, c2]){return nil}
         let slope = (c2.y - c1.y) / (c2.x - c1.x)
-        self.init(slope: slope, point: c2)
+        self.init(slope: slope, point: c2, min: min, max: max)
     }
    
     fileprivate init(slope: Number, point: xy<Number>, min: Number? = nil, max: Number? = nil){

@@ -99,6 +99,3 @@ open class HKView: UIView {
     }
     
 }
-
-
-

@@ -9,13 +9,14 @@
 import UIKit
 
 
-@objc public enum ScrollingDirection: Int { case horizontal = 0, vertical = 1 }
-
+@objc public enum ScrollingDirection: Int { case horizontal = 0, vertical }
+@objc public enum SwipingDirection: Int{ case towardTop = 0, towardBottom, towardLeft, towardRight }
 
 open class DirectionAwarePanGesture: UIPanGestureRecognizer{
     
     
-    open private(set) var direction: ScrollingDirection?
+    open private(set) var scrollingDirection: ScrollingDirection?
+    open private(set) var swipingDirection: SwipingDirection?
     
     private var touchesMovedWasAlreadyCalled = false
     
@@ -25,7 +26,7 @@ open class DirectionAwarePanGesture: UIPanGestureRecognizer{
     }
     
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
-        self.direction = nil
+        self.scrollingDirection = nil
         touchesMovedWasAlreadyCalled = false
         super.touchesBegan(touches, with: event)
     }
@@ -43,14 +44,28 @@ open class DirectionAwarePanGesture: UIPanGestureRecognizer{
             let currentLocation = touches.first!.location(in: touches.first!.window)
             let translation = currentLocation.getTranslation(from: previousLocation)
 
+            
+            
             if translation == CGPoint.zero {
                 touchesMovedWasAlreadyCalled = false
                 return
             }
             if abs(translation.x) > abs(translation.y){
-                self.direction = .horizontal
+                self.scrollingDirection = .horizontal
             } else {
-                self.direction = .vertical
+                self.scrollingDirection = .vertical
+            }
+            
+            if scrollingDirection == .horizontal{
+                if currentLocation.x < previousLocation.x {
+                    swipingDirection = .towardLeft
+                } else {swipingDirection = .towardRight}
+            }
+            
+            if scrollingDirection == .vertical{
+                if currentLocation.y < previousLocation.y{
+                    swipingDirection = .towardTop
+                } else {swipingDirection = .towardBottom}
             }
         }
         super.touchesMoved(touches, with: event)

@@ -47,6 +47,13 @@ extension CGPoint{
         newPoint.y = self.y - previousPoint.y
         return newPoint
     }
+    
+    public func translated(by anotherPoint: CGPoint) -> CGPoint{
+        var newPoint = CGPoint.zero
+        newPoint.x = self.x + anotherPoint.x
+        newPoint.y = self.y + anotherPoint.y
+        return newPoint
+    }
 }
 
 
@@ -330,9 +337,17 @@ extension UIView{
         
     }
     
-    
-    
-    
+    /// Positions the view such the specified position in the receiver's bounds is aligned with the provided point in the frame of its superview.
+    open func move(pointInBounds: CGPoint, toPointInSuperViewsFrame newPoint: CGPoint){
+        guard let superview = superview else {return}
+        let convertedPointInBounds = superview.convert(pointInBounds, from: self)
+        let convertedOrigin = superview.convert(bounds.origin, from: self)
+        
+        let difference = convertedOrigin.getTranslation(from: convertedPointInBounds)
+        let newPosition = newPoint.translated(by: difference)
+        self.frame.origin = newPosition
+        
+    }
     
     
     open var centerInFrame: CGPoint{
