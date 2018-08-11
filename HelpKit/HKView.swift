@@ -35,6 +35,7 @@ open class HKView: UIView {
     open var didMoveToSuperviewAction = {}
     open var willRemoveFromSuperViewAction = {}
     
+    
     open var pointInsideAction: ((_ point: CGPoint, _ event: UIEvent?) -> Bool)?
     open var hitTestAction: ((_ point: CGPoint, _ event: UIEvent?) -> UIView?)?
 
@@ -91,7 +92,7 @@ open class HKView: UIView {
         return super.hitTest(point, with: event)
     }
     
-    
+   
     
     
     required public init?(coder aDecoder: NSCoder) {

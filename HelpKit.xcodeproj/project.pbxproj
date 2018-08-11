@@ -16,6 +16,8 @@
 		60470E4620FA31C600C947E6 /* Pin Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60470E4520FA31C600C947E6 /* Pin Methods.swift */; };
 		604A789820FA41A800E5257D /* HKScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A789720FA41A800E5257D /* HKScrollView.swift */; };
 		605F1B7F20FC13F4003CCD0B /* iOS Screen Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F1B7E20FC13F4003CCD0B /* iOS Screen Sizes.swift */; };
+		6061C473211F3A97002F83CA /* HelpKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60470E3A20FA31A200C947E6 /* HelpKit.framework */; };
+		6061C47A211F3AB2002F83CA /* EquationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6061C479211F3AB2002F83CA /* EquationTests.swift */; };
 		607C79CB210C15D7005F3A78 /* HKNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607C79CA210C15D7005F3A78 /* HKNotifications.swift */; };
 		60920BCB21034AC900B4AFEF /* EArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60920BCA21034AC900B4AFEF /* EArray.swift */; };
 		60920BCD21035ABF00B4AFEF /* WeakWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60920BCC21035ABF00B4AFEF /* WeakWrapper.swift */; };
@@ -25,6 +27,16 @@
 		60DED93820FE192A007DD680 /* DirectionAwarePanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DED93720FE192A007DD680 /* DirectionAwarePanGesture.swift */; };
 		60DED93E20FE19A8007DD680 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DED93D20FE19A8007DD680 /* Extensions.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6061C474211F3A97002F83CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60470E3120FA31A200C947E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 60470E3920FA31A200C947E6;
+			remoteInfo = HelpKit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		600042982111157F00350F2E /* HKGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKGradientView.swift; sourceTree = "<group>"; };
@@ -38,6 +50,9 @@
 		60470E4520FA31C600C947E6 /* Pin Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin Methods.swift"; sourceTree = "<group>"; };
 		604A789720FA41A800E5257D /* HKScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKScrollView.swift; sourceTree = "<group>"; };
 		605F1B7E20FC13F4003CCD0B /* iOS Screen Sizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOS Screen Sizes.swift"; sourceTree = "<group>"; };
+		6061C46E211F3A97002F83CA /* HelpKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelpKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6061C472211F3A97002F83CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6061C479211F3AB2002F83CA /* EquationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationTests.swift; sourceTree = "<group>"; };
 		607C79CA210C15D7005F3A78 /* HKNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKNotifications.swift; sourceTree = "<group>"; };
 		60920BCA21034AC900B4AFEF /* EArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EArray.swift; sourceTree = "<group>"; };
 		60920BCC21035ABF00B4AFEF /* WeakWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakWrapper.swift; sourceTree = "<group>"; };
@@ -56,6 +71,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6061C46B211F3A97002F83CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6061C473211F3A97002F83CA /* HelpKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -63,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				60470E3C20FA31A200C947E6 /* HelpKit */,
+				6061C46F211F3A97002F83CA /* HelpKitTests */,
 				60470E3B20FA31A200C947E6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				60470E3A20FA31A200C947E6 /* HelpKit.framework */,
+				6061C46E211F3A97002F83CA /* HelpKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,25 +104,34 @@
 			isa = PBXGroup;
 			children = (
 				60470E3D20FA31A200C947E6 /* HelpKit.h */,
-				60470E3E20FA31A200C947E6 /* Info.plist */,
-				60470E4520FA31C600C947E6 /* Pin Methods.swift */,
-				60DED93520FE1923007DD680 /* PageScrollingInteractor.swift */,
-				60DED93720FE192A007DD680 /* DirectionAwarePanGesture.swift */,
-				605F1B7E20FC13F4003CCD0B /* iOS Screen Sizes.swift */,
-				60DED93D20FE19A8007DD680 /* Extensions.swift */,
-				6011896C20FEDAB400C87C74 /* HKView.swift */,
-				604A789720FA41A800E5257D /* HKScrollView.swift */,
-				6011896F20FEE1B100C87C74 /* HKButtonTemplate.swift */,
-				60920BCA21034AC900B4AFEF /* EArray.swift */,
-				60920BCC21035ABF00B4AFEF /* WeakWrapper.swift */,
-				6098DD642103FDB40024C90F /* InputAccessoryViewWrapper.swift */,
-				60B506742108057400A9E94A /* Equations.swift */,
-				607C79CA210C15D7005F3A78 /* HKNotifications.swift */,
-				600042982111157F00350F2E /* HKGradientView.swift */,
-				603C830E2112983F00592E18 /* HKCircleView.swift */,
 				6005366B2118E1EA00EA490B /* Custom ViewController Transitions.swift */,
+				60DED93720FE192A007DD680 /* DirectionAwarePanGesture.swift */,
+				60920BCA21034AC900B4AFEF /* EArray.swift */,
+				60B506742108057400A9E94A /* Equations.swift */,
+				60DED93D20FE19A8007DD680 /* Extensions.swift */,
+				6011896F20FEE1B100C87C74 /* HKButtonTemplate.swift */,
+				603C830E2112983F00592E18 /* HKCircleView.swift */,
+				600042982111157F00350F2E /* HKGradientView.swift */,
+				607C79CA210C15D7005F3A78 /* HKNotifications.swift */,
+				604A789720FA41A800E5257D /* HKScrollView.swift */,
+				6011896C20FEDAB400C87C74 /* HKView.swift */,
+				60470E3E20FA31A200C947E6 /* Info.plist */,
+				6098DD642103FDB40024C90F /* InputAccessoryViewWrapper.swift */,
+				605F1B7E20FC13F4003CCD0B /* iOS Screen Sizes.swift */,
+				60DED93520FE1923007DD680 /* PageScrollingInteractor.swift */,
+				60470E4520FA31C600C947E6 /* Pin Methods.swift */,
+				60920BCC21035ABF00B4AFEF /* WeakWrapper.swift */,
 			);
 			path = HelpKit;
+			sourceTree = "<group>";
+		};
+		6061C46F211F3A97002F83CA /* HelpKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				6061C479211F3AB2002F83CA /* EquationTests.swift */,
+				6061C472211F3A97002F83CA /* Info.plist */,
+			);
+			path = HelpKitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,16 +166,39 @@
 			productReference = 60470E3A20FA31A200C947E6 /* HelpKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		6061C46D211F3A97002F83CA /* HelpKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6061C478211F3A97002F83CA /* Build configuration list for PBXNativeTarget "HelpKitTests" */;
+			buildPhases = (
+				6061C46A211F3A97002F83CA /* Sources */,
+				6061C46B211F3A97002F83CA /* Frameworks */,
+				6061C46C211F3A97002F83CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6061C475211F3A97002F83CA /* PBXTargetDependency */,
+			);
+			name = HelpKitTests;
+			productName = HelpKitTests;
+			productReference = 6061C46E211F3A97002F83CA /* HelpKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		60470E3120FA31A200C947E6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Patrick Hanna";
 				TargetAttributes = {
 					60470E3920FA31A200C947E6 = {
+						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
+					};
+					6061C46D211F3A97002F83CA = {
 						CreatedOnToolsVersion = 10.0;
 						LastSwiftMigration = 1000;
 					};
@@ -160,12 +217,20 @@
 			projectRoot = "";
 			targets = (
 				60470E3920FA31A200C947E6 /* HelpKit */,
+				6061C46D211F3A97002F83CA /* HelpKitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		60470E3820FA31A200C947E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6061C46C211F3A97002F83CA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -198,7 +263,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6061C46A211F3A97002F83CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6061C47A211F3AB2002F83CA /* EquationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6061C475211F3A97002F83CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 60470E3920FA31A200C947E6 /* HelpKit */;
+			targetProxy = 6061C474211F3A97002F83CA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		60470E4020FA31A200C947E6 /* Debug */ = {
@@ -374,6 +455,45 @@
 			};
 			name = Release;
 		};
+		6061C476211F3A97002F83CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HelpKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PatrickHanna.HelpKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6061C477211F3A97002F83CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HelpKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PatrickHanna.HelpKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -391,6 +511,15 @@
 			buildConfigurations = (
 				60470E4320FA31A200C947E6 /* Debug */,
 				60470E4420FA31A200C947E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6061C478211F3A97002F83CA /* Build configuration list for PBXNativeTarget "HelpKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6061C476211F3A97002F83CA /* Debug */,
+				6061C477211F3A97002F83CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

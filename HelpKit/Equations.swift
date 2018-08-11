@@ -10,17 +10,6 @@ import UIKit
 import simd
 
 
-
-
-
-
-
-
-
-
-
-
-
 public struct xy<Number: BinaryFloatingPoint>: Equatable{
     
     /// Returns true if the array of points are valid to be used in an equation, and false if they are not valid.
@@ -65,6 +54,10 @@ public class Equation<Number: BinaryFloatingPoint>{
     
     fileprivate func performCalculation(for x: Number) -> Number{
         return 1
+    }
+    
+    public subscript (x: Number) -> Number{
+        return solve(for: x)
     }
     
     public func solve(for x: Number) -> Number{
@@ -148,11 +141,6 @@ public class QuadraticEquation<Number: BinaryFloatingPoint>: Equation<Number>{
         
         return (a * Number(pow(Double(x), 2))) + (b * x) + c
     }
-
-    
-    
-    
-    
 }
 
 public typealias CGAbsEquation = AbsoluteValueEquation<CGFloat>
@@ -169,13 +157,17 @@ public class AbsoluteValueEquation<Number: BinaryFloatingPoint>: Equation<Number
         let testLine1 = LinearEquation<Number>(slope: -line1.slope, point: c3)
         let testLine2 = LinearEquation<Number>(slope: -line2.slope, point: c1)
         
-        if line1.intersect(testLine1).x >= points[1].x{
+        let testIntersect1 = line1.intersect(testLine1)
+        let testIntersect2 = line2.intersect(testLine2)
+        
+        if testIntersect1.x >= points[1].x && testIntersect1.x <= points[2].x{
             self.vertex = line1.intersect(testLine1)
             self.slope = testLine1.slope
-        } else if line2.intersect(testLine2).x <= points[1].x{
+        } else if testIntersect2.x <= points[1].x && testIntersect2.x <= points[0].x {
             self.vertex = line2.intersect(testLine2)
             self.slope = testLine2.slope
-        } else {fatalError()}
+        } else {return nil}
+        
         super.init(min: min, max: max)
     }
     
@@ -184,12 +176,6 @@ public class AbsoluteValueEquation<Number: BinaryFloatingPoint>: Equation<Number
     
     
     override func performCalculation(for x: Number) -> Number {
-        
         return (slope * abs(x - vertex.x)) + vertex.y
     }
-    
-    
-    
-    
-    
 }

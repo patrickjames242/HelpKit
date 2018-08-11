@@ -8,23 +8,10 @@
 
 import UIKit
 
-#if swift(>=4.2)
-import UIKit.UIGeometry
-extension UIEdgeInsets {
-    public static let zero = UIEdgeInsets()
-}
-#endif
 
 
-public struct CenterInsets{
-    public let x: CGFloat
-    public let y: CGFloat
-    public static var zero = CenterInsets(x: 0, y: 0)
-    public init(x: CGFloat = 0, y: CGFloat = 0){
-        self.x = x
-        self.y = y
-    }
-}
+
+
 
 
 
@@ -40,6 +27,11 @@ public enum ConstraintDimension{
     case height
     case width
     
+}
+
+public enum MultipliableConstraintDimension{
+    case height
+    case width
 }
 
 
@@ -68,61 +60,6 @@ extension NSLayoutAnchor: PinnableLayoutAnchor {}
 public extension Pinnable{
     
     
-    public func pin(left: NSLayoutXAxisAnchor? = nil,
-                    right: NSLayoutXAxisAnchor? = nil,
-                    top: NSLayoutYAxisAnchor? = nil,
-                    bottom: NSLayoutYAxisAnchor? = nil,
-                    centerX: NSLayoutXAxisAnchor? = nil,
-                    centerY: NSLayoutYAxisAnchor? = nil,
-                    width: NSLayoutDimension? = nil,
-                    height: NSLayoutDimension? = nil,
-                    size: CGSize? = nil,
-                    insets: UIEdgeInsets = UIEdgeInsets.zero,
-                    centerInsets: CenterInsets = CenterInsets.zero,
-                    sizeInsets: CGSize = CGSize.zero){
-        
-        
-        if let view = self as? UIView{
-            view.translatesAutoresizingMaskIntoConstraints = false
-        }
-        
-        if let left = left{
-            leftAnchor.constraint(equalTo: left, constant: insets.left).isActive = true
-        }
-        if let right = right{
-            rightAnchor.constraint(equalTo: right, constant: -insets.right).isActive = true
-        }
-        if let top = top{
-            topAnchor.constraint(equalTo: top, constant: insets.top).isActive = true
-        }
-        if let bottom = bottom{
-            bottomAnchor.constraint(equalTo: bottom, constant: -insets.bottom).isActive = true
-        }
-        if let centerX = centerX{
-            centerXAnchor.constraint(equalTo: centerX, constant: centerInsets.x).isActive = true
-        }
-        if let centerY = centerY{
-            centerYAnchor.constraint(equalTo: centerY, constant: centerInsets.y).isActive = true
-        }
-        if let height = height{
-            heightAnchor.constraint(equalTo: height, constant: sizeInsets.height).isActive = true
-        }
-        if let width = width{
-            widthAnchor.constraint(equalTo: width, constant: sizeInsets.width).isActive = true
-        }
-        
-        if let size = size {
-            
-            if size.width != 0{
-                widthAnchor.constraint(equalToConstant: size.width).isActive = true
-            }
-            if size.height != 0{
-                heightAnchor.constraint(equalToConstant: size.height).isActive = true
-            }
-            
-        }
-        
-    }
     
     
     
@@ -148,7 +85,6 @@ public extension Pinnable{
     }
     
     
-    
     /**
      Call this function as a substitute for UIKit's individual constraint functions.
      
@@ -156,11 +92,10 @@ public extension Pinnable{
      **/
     
     
-    @discardableResult public func pin(addTo view: UIView? = nil, anchors: [ConstraintDimension: PinnableLayoutAnchor] = [:], constants: [ConstraintDimension: CGFloat] = [:]) -> Pins {
-        
+    @discardableResult public func pin(addTo view: UIView? = nil, anchors: [ConstraintDimension: PinnableLayoutAnchor] = [:], constants: [ConstraintDimension: CGFloat] = [:], multipliers: [MultipliableConstraintDimension: CGFloat] = [:]) -> Pins {
         
         let pins = Pins()
-        
+
         if let view = self as? UIView{
             view.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -178,6 +113,7 @@ public extension Pinnable{
             if let left = left as? NSLayoutXAxisAnchor{
                 let leftInset = constants[.left] ?? 0
                 pins.left = leftAnchor.constraint(equalTo: left, constant: leftInset)
+                
             } else { sendError(.left) }
         }
         
@@ -218,10 +154,11 @@ public extension Pinnable{
         }
         
         
-        if let height = anchors[.height]{
+        if let height = anchors[.height] {
             if let height = height as? NSLayoutDimension {
                 let heightConst: CGFloat = constants[.height] ?? 0
-                pins.height = heightAnchor.constraint(equalTo: height, constant: heightConst)
+                let heightMul: CGFloat = multipliers[.height] ?? 1
+                pins.height = heightAnchor.constraint(equalTo: height, multiplier: heightMul, constant: heightConst)
             } else { sendError(.height) }
         } else {
             if let heightConst = constants[.height]{
@@ -232,7 +169,8 @@ public extension Pinnable{
         if let width = anchors[.width]{
             if let width = width as? NSLayoutDimension {
                 let widthConst: CGFloat = constants[.width] ?? 0
-                pins.width = widthAnchor.constraint(equalTo: width, constant: widthConst)
+                let widthMul: CGFloat = multipliers[.width] ?? 1
+                pins.width = widthAnchor.constraint(equalTo: width, multiplier: widthMul, constant: widthConst)
             } else { sendError(.width) }
         } else {
             if let widthConst = constants[.width]{
@@ -240,7 +178,16 @@ public extension Pinnable{
             }
         }
         pins.activateAll()
+        
         return pins
+    }
+    
+    @discardableResult public func pin(addTo view: UIView? = nil, anchors: [ConstraintDimension: PinnableLayoutAnchor] = [:], constants: [ConstraintDimension: CGFloat] = [:]) -> Pins {
+        return self.pin(addTo: view, anchors: anchors, constants: constants, multipliers: [:])
+    }
+    
+    @discardableResult public func pin(addTo view: UIView? = nil, anchors: [ConstraintDimension: PinnableLayoutAnchor] = [:]) -> Pins {
+        return self.pin(addTo: view, anchors: anchors, constants: [:], multipliers: [:])
     }
 }
 
@@ -295,3 +242,17 @@ public class Pins{
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,7 +9,7 @@
 import UIKit
 
 open class HKInteractionController: NSObject, UIViewControllerInteractiveTransitioning{
-    var context: UIViewControllerContextTransitioning?
+    weak var context: UIViewControllerContextTransitioning?
     
     open func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
         self.context = transitionContext

@@ -9,24 +9,32 @@
 import UIKit
 
 
-open class HKButtonTemplate: HKView{
+open class HKButtonTemplate: UIControl{
     
-    
-    open var minimumActivationSize = CGSize(width: 60, height: 60)
-    
-    open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        self.layoutIfNeeded()
-        
-        let height = max(minimumActivationSize.height, bounds.size.height)
-        let width = max(minimumActivationSize.width, bounds.size.width)
-        
-        let newRect = CGRect(center: self.centerInBounds, width: width, height: height)
-
-        return newRect.contains(point)
+    public init(){
+        super.init(frame: CGRect.zero)
+        addTarget(self, action: #selector(tapBegan), for: [.touchDown])
+        addTarget(self, action: #selector(tapEnded), for: [.touchCancel, .touchUpInside, .touchDragExit, .touchDragOutside])
+        addTarget(self, action: #selector(carryOutButtonAction), for: .touchUpInside)
     }
     
     
-    open var isEnabled = true
+    /// The bounds that is returned is used in the point inside method to determine whether the point occured inside the view. If nil is returned, the bounds of the view is used instead.
+    public final lazy var activationArea: () -> CGRect? = {return nil}
+    
+    open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        self.layoutIfNeeded()
+        return activationArea()?.contains(point) ?? bounds.contains(point)
+    }
+    
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if self.point(inside: point, with: event) && isUserInteractionEnabled && !isHidden && alpha > 0{
+            return self
+        }
+        return nil
+    }
+    
+    
     
     private var actions = [() -> Void]()
     
@@ -34,35 +42,23 @@ open class HKButtonTemplate: HKView{
         self.actions.append(action)
     }
     
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        if !isEnabled { return }
-        tapBegan()
-
-    }
-    
-    
-    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        if !isEnabled{return}
-        tapEnded()
-        actions.forEach{$0()}
-    }
-    
-    override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesCancelled(touches, with: event)
-        if !isEnabled{return}
-        tapEnded()
-    }
-    
-    
 
     
-    open func tapBegan(){
+    @objc private func carryOutButtonAction(){
+        actions.forEach{ $0() }
+    }
+
+    
+    @objc open func tapBegan(){
         
     }
     
-    open func tapEnded(){
+    @objc open func tapEnded(){
         
+    }
+    
+    
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError()
     }
 }

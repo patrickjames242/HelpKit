@@ -13,12 +13,11 @@ import UIKit
 
 public struct EArray<Element>{
     
-    
-    
-    private var storage = [Int: Element]()
+
+    fileprivate var storage = [Int: Element]()
     
     public init(array: Array<Element>) {
-        self.add(contentsOf: array)
+        self.append(contentsOf: array)
     }
     
     public init() { }
@@ -34,26 +33,12 @@ public struct EArray<Element>{
         return arrayToReturn as! [Element]
     }
     
+
     
-    public mutating func removeAll(){
-        storage.removeAll()
-    }
-    
-    public mutating func add(_ element: Element){
-        storage[storage.count] = element
-    }
-    
-    public mutating func add(contentsOf array: [Element]){
-        
-        for element in array{
-            add(element)
-        }
-        
-    }
-    
-    public mutating func irateThrough<x>(array: [x], extractValue: (x) -> Element?){
+    public mutating func iterateThrough<X, Y: Sequence>(_ sequence: Y, extractValue: (X) -> Element?) where Y.Element == X{
         var z = storage.count
-        for y in array{
+        
+        for y in sequence{
             
             if let result = extractValue(y){
                 self.storage[z] = result
@@ -62,7 +47,7 @@ public struct EArray<Element>{
         }
     }
     
-    public mutating func addBatch (numberOfTimes: Int, extractValue: () -> Element){
+    public mutating func addBatch (numberOfTimes: Int, extractValue: @autoclosure () -> Element){
         var z = storage.count
         let count = storage.count
         
@@ -88,22 +73,89 @@ public struct EArray<Element>{
 
 //CONVENIENT CONFORMANCES
 
-extension EArray: ExpressibleByArrayLiteral, CustomStringConvertible {
-    
-    public var description: String{
-        return storage.values.description
-    }
-    
-    
+extension EArray: Equatable where Element: Equatable { }
+extension EArray: Hashable where Element: Hashable { }
+extension EArray: Codable where Element: Codable { }
+extension EArray: BidirectionalCollection { }
+extension EArray: RandomAccessCollection { }
+extension EArray: RangeReplaceableCollection { }
+
+
+
+extension EArray: ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: Element...) {
         self.init(array: elements)
     }
-    
-    public typealias ArrayLiteralElement = Element
-    
-    public subscript(index: Int) -> Element?{
-        return storage[index]
+}
+
+extension EArray: CustomStringConvertible{
+    public var description: String{
+        return storage.values.description
+    }
+}
+
+public struct EArrayIterator<Element>: IteratorProtocol{
+    fileprivate init(earray: EArray<Element>){
+        self.earray = earray
     }
     
+    private var currentIndex = 0
     
+    private let earray: EArray<Element>
+    
+    mutating public func next() -> Element? {
+        if currentIndex == earray.storage.count {return nil}
+        let elementToReturn = earray.storage[currentIndex]
+        currentIndex += 1
+        return elementToReturn
+    }
 }
+
+
+extension EArray: Sequence{
+    
+    public typealias Iterator = EArrayIterator<Element>
+    public func makeIterator() -> EArray<Element>.Iterator {
+        return EArrayIterator(earray: self)
+    }
+}
+
+
+
+
+extension EArray: MutableCollection{
+    public var startIndex: Int{
+        return 0
+    }
+    
+    public var endIndex: Int{
+        return storage.count
+    }
+    public func index(after i: Int) -> Int {
+        if !(i < endIndex) { fatalError("index out of bounds") }
+        return i + 1
+    }
+    public subscript(position: Int) -> Element{
+        get{
+            if !(startIndex..<endIndex).contains(position){fatalError( "index \(position) out of bounds")}
+            return storage[position]!
+        }
+        set{
+            if position < startIndex || position > endIndex - 1{fatalError("index \(position) out of bounds")}
+            storage[position] = newValue
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
