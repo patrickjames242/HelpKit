@@ -14,11 +14,18 @@ open class HKButtonTemplate: UIControl{
     public init(){
         super.init(frame: CGRect.zero)
         addTarget(self, action: #selector(tapBegan), for: [.touchDown])
-        addTarget(self, action: #selector(tapEnded), for: [.touchCancel, .touchUpInside, .touchDragExit, .touchDragOutside])
+        addTarget(self, action: #selector(tapEnded), for: [.touchUpInside,])
+        addTarget(self, action: #selector(tapCancelled), for: [.touchCancel, .touchDragExit, .touchDragOutside])
         addTarget(self, action: #selector(carryOutButtonAction), for: .touchUpInside)
+        
     }
     
+    open override var next: UIResponder?{
+        return UIView()
+    }
+
     
+   
     /// The bounds that is returned is used in the point inside method to determine whether the point occured inside the view. If nil is returned, the bounds of the view is used instead.
     public final lazy var activationArea: () -> CGRect? = {return nil}
     
@@ -49,13 +56,11 @@ open class HKButtonTemplate: UIControl{
     }
 
     
-    @objc open func tapBegan(){
-        
-    }
+    @objc open func tapBegan() {}
     
-    @objc open func tapEnded(){
-        
-    }
+    @objc open func tapEnded() {}
+    
+    @objc open func tapCancelled() {}
     
     
     public required init?(coder aDecoder: NSCoder) {

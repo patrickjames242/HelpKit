@@ -56,11 +56,15 @@ public class Equation<Number: BinaryFloatingPoint>{
         return 1
     }
     
+    public func uniting(_ equation: Equation<Number>, after xVal: Number) -> EquationUnion<Number>{
+        return EquationUnion(join: equation, to: self, after: xVal)
+    }
+    
     public subscript (x: Number) -> Number{
         return solve(for: x)
     }
     
-    public func solve(for x: Number) -> Number{
+    final public func solve(for x: Number) -> Number{
         
         var val = performCalculation(for: x)
         if let min = min{
@@ -178,4 +182,25 @@ public class AbsoluteValueEquation<Number: BinaryFloatingPoint>: Equation<Number
     override func performCalculation(for x: Number) -> Number {
         return (slope * abs(x - vertex.x)) + vertex.y
     }
+}
+
+
+public class EquationUnion<Number: BinaryFloatingPoint>: Equation<Number>{
+    
+    fileprivate init(join e2: Equation<Number>, to e1: Equation<Number>, after joinXVal: Number){
+        self.e1 = e1; self.joinXVal = joinXVal; self.e2 = e2
+        super.init(min: nil, max: nil)
+    }
+    
+    private let e1: Equation<Number>
+    private let joinXVal: Number
+    private let e2: Equation<Number>
+    
+    override func performCalculation(for x: Number) -> Number {
+        if x <= joinXVal{return e1.solve(for: x)}
+        else {return e2.solve(for: x)}
+    }
+    
+    
+    
 }

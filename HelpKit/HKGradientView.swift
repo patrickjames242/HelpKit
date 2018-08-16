@@ -21,7 +21,7 @@ open class HKGradientView: HKView{
     
     open func setGradientColors(colors: [UIColor]){
         gradientLayer.colors = colors.map{$0.cgColor}
-        gradientLayer.locations = colors.indices.map { NSNumber(value: $0) }
+        gradientLayer.locations = colors.indices.map { NSNumber(value: $0 / colors.lastItemIndex!) }
     }
     
     

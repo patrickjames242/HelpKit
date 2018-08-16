@@ -116,8 +116,11 @@ extension EArray: Sequence{
     
     public typealias Iterator = EArrayIterator<Element>
     public func makeIterator() -> EArray<Element>.Iterator {
+        
+        
         return EArrayIterator(earray: self)
     }
+    
 }
 
 
@@ -132,30 +135,19 @@ extension EArray: MutableCollection{
         return storage.count
     }
     public func index(after i: Int) -> Int {
-        if !(i < endIndex) { fatalError("index out of bounds") }
+        if !(i < endIndex) || i < 0 { fatalError("index out of bounds") }
+        precondition((startIndex..<endIndex).contains(i), "Index out of bounds")
         return i + 1
     }
     public subscript(position: Int) -> Element{
         get{
-            if !(startIndex..<endIndex).contains(position){fatalError( "index \(position) out of bounds")}
+            precondition((startIndex..<endIndex).contains(position), "index \(position) out of bounds")
             return storage[position]!
         }
         set{
-            if position < startIndex || position > endIndex - 1{fatalError("index \(position) out of bounds")}
+            precondition((startIndex...endIndex).contains(position), "index \(position) out of bounds")
             storage[position] = newValue
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 

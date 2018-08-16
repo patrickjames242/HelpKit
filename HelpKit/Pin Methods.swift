@@ -9,14 +9,6 @@
 import UIKit
 
 
-
-
-
-
-
-
-
-
 public enum ConstraintDimension{
     case left
     case right
@@ -26,7 +18,6 @@ public enum ConstraintDimension{
     case bottom
     case height
     case width
-    
 }
 
 public enum MultipliableConstraintDimension{
@@ -61,7 +52,9 @@ public extension Pinnable{
     
     
     
-    
+    @discardableResult public func pinAllSides(addTo view: UIView? = nil, pinTo object: Pinnable) -> Pins{
+        return pinAllSides(addTo: view, pinTo: object, insets: UIEdgeInsets.zero)
+    }
     
     
     @discardableResult public func pinAllSides(addTo view: UIView? = nil, pinTo object: Pinnable, insets: UIEdgeInsets = UIEdgeInsets.zero) -> Pins{
@@ -182,11 +175,11 @@ public extension Pinnable{
         return pins
     }
     
-    @discardableResult public func pin(addTo view: UIView? = nil, anchors: [ConstraintDimension: PinnableLayoutAnchor] = [:], constants: [ConstraintDimension: CGFloat] = [:]) -> Pins {
+    @discardableResult public func pin(addTo view: UIView?, anchors: [ConstraintDimension: PinnableLayoutAnchor], constants: [ConstraintDimension: CGFloat]) -> Pins {
         return self.pin(addTo: view, anchors: anchors, constants: constants, multipliers: [:])
     }
     
-    @discardableResult public func pin(addTo view: UIView? = nil, anchors: [ConstraintDimension: PinnableLayoutAnchor] = [:]) -> Pins {
+    @discardableResult public func pin(addTo view: UIView?, anchors: [ConstraintDimension: PinnableLayoutAnchor]) -> Pins {
         return self.pin(addTo: view, anchors: anchors, constants: [:], multipliers: [:])
     }
 }
@@ -240,7 +233,6 @@ public class Pins{
     public func deactivateAll(){
         NSLayoutConstraint.deactivate(all)
     }
-    
 }
 
 

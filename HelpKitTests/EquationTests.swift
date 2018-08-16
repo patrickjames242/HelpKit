@@ -75,6 +75,7 @@ class AbsoluteValueEquationTests: XCTestCase{
     
     func testRespectsMinAndMaxValues(){
         let equation = AbsoluteValueEquation(xy(-1, 100), xy(0, -100), xy(1, 100), min: 0, max: 0.5)!
+        
         XCTAssertEqual(equation.solve(for: -1), 0.5)
         XCTAssertEqual(equation.solve(for: 0), 0)
     }
@@ -106,9 +107,31 @@ class QuadradicEquationTests: XCTestCase{
     }
     
     func testRespectsMinAndMaxValues(){
-    let equation = QuadraticEquation(xy(-1, 100), xy(0, -100), xy(1, 100), min: 0, max: 0.5)!
+        let equation = QuadraticEquation(xy(-1, 100), xy(0, -100), xy(1, 100), min: 0, max: 0.5)!
         
         XCTAssertEqual(equation.solve(for: -1), 0.5)
         XCTAssertEqual(equation.solve(for: 0), 0)
     }
+}
+
+class EquationUnionTests: XCTestCase{
+    
+    func testEvaluatesCorrectly(){
+        let union1 = LinearEquation(xy(0, 27), xy(5, 42))!.uniting(LinearEquation(xy(5, 76), xy(10, 42))!, after: 5)
+        XCTAssertEqual(union1[0], 27)
+        XCTAssertEqual(union1[5], 42)
+        XCTAssertEqual(union1[10], 42)
+        
+        let union2 = LinearEquation(xy(0, 27), xy(5, 42))!.uniting(LinearEquation(xy(5, 76), xy(10, 42))!, after: 4.999)
+        XCTAssertEqual(union2[5], 76)
+        
+        let union3 = AbsoluteValueEquation(xy(-1, 1), xy(-0.5, 0), xy(0, 1))!.uniting(AbsoluteValueEquation(xy(0, 1), xy(0.5, 0), xy(1, 1))!, after: 0)
+        XCTAssertEqual(union3[-1], 1)
+        XCTAssertEqual(union3[-0.5], 0)
+        XCTAssertEqual(union3[0], 1)
+        XCTAssertEqual(union3[0.5], 0)
+        XCTAssertEqual(union3[1], 1)
+        
+    }
+    
 }

@@ -27,7 +27,6 @@ public class HKScrollView: UIScrollView{
     private func setUp(){
         
         let contentLayoutGuidePins = contentLayoutGuide.pin(constants: [.width: contentSize.width, .height: contentSize.height])
-        
         contentLayoutGuideWidthAnchor = contentLayoutGuidePins.width!
         contentLayoutGuideHeightAnchor = contentLayoutGuidePins.height!
     }
