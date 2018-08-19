@@ -136,7 +136,7 @@ extension EArray: MutableCollection{
     }
     public func index(after i: Int) -> Int {
         if !(i < endIndex) || i < 0 { fatalError("index out of bounds") }
-        precondition((startIndex..<endIndex).contains(i), "Index out of bounds")
+        precondition((startIndex..<endIndex).contains(i), "index out of bounds")
         return i + 1
     }
     public subscript(position: Int) -> Element{

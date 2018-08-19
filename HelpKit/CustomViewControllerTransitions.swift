@@ -11,10 +11,19 @@ import UIKit
 
 
 extension UIViewController: HKVCTransParticipator{
+    
+    
+    private func getTopMostLevelParent(for vc: UIViewController) -> UIViewController{
+        if vc.parent == nil { return vc }
+        else {return getTopMostLevelParent(for: vc.parent!)}
+    }
+    
     @objc open var viewControllerForTransition: UIViewController {
-        return self
+        return getTopMostLevelParent(for: self)
     }
 }
+
+
 
 
 public protocol HKVCTransParticipator: class {
@@ -60,7 +69,12 @@ open class HKVCTransBrain{
     
     open func carryOutUnanimatedDismissalAction() { }
     
-    open func cleanUpAfterDismissal() { }
+    open func cleanUpAfterDismissal() {
+        
+        _presented = nil
+        _presenter = nil
+        
+    }
 }
 
 

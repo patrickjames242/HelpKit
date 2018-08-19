@@ -17,7 +17,6 @@ open class HKButtonTemplate: UIControl{
         addTarget(self, action: #selector(tapEnded), for: [.touchUpInside,])
         addTarget(self, action: #selector(tapCancelled), for: [.touchCancel, .touchDragExit, .touchDragOutside])
         addTarget(self, action: #selector(carryOutButtonAction), for: .touchUpInside)
-        
     }
     
     open override var next: UIResponder?{

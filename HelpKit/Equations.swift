@@ -49,8 +49,8 @@ public class Equation<Number: BinaryFloatingPoint>{
         self.max = max
     }
     
-    private let min: Number?
-    private let max: Number?
+    fileprivate let min: Number?
+    fileprivate let max: Number?
     
     fileprivate func performCalculation(for x: Number) -> Number{
         return 1
@@ -85,7 +85,7 @@ public typealias CGLinearEquation = LinearEquation<CGFloat>
 
 public class LinearEquation<Number: BinaryFloatingPoint>: Equation<Number>{
     
-    public convenience init?(_ c1: xy<Number>, _ c2: xy<Number>, min: Number? = nil, max: Number? = nil){
+    public convenience init?(_ c1: xy<Number>, _ c2: xy<Number>, min: Number? = nil, max: Number? = nil) {
         if !xy.checkValidity(of: [c1, c2]){return nil}
         let slope = (c2.y - c1.y) / (c2.x - c1.x)
         self.init(slope: slope, point: c2, min: min, max: max)
@@ -170,7 +170,7 @@ public class AbsoluteValueEquation<Number: BinaryFloatingPoint>: Equation<Number
         } else if testIntersect2.x <= points[1].x && testIntersect2.x <= points[0].x {
             self.vertex = line2.intersect(testLine2)
             self.slope = testLine2.slope
-        } else {return nil}
+        } else { return nil }
         
         super.init(min: min, max: max)
     }
@@ -192,14 +192,28 @@ public class EquationUnion<Number: BinaryFloatingPoint>: Equation<Number>{
         super.init(min: nil, max: nil)
     }
     
+    private init(oldEquation: EquationUnion<Number>, min: Number?, max: Number?){
+        self.e1 = oldEquation.e1
+        self.e2 = oldEquation.e2
+        self.joinXVal = oldEquation.joinXVal
+        super.init(min: min, max: max)
+    }
+    
     private let e1: Equation<Number>
     private let joinXVal: Number
     private let e2: Equation<Number>
     
     override func performCalculation(for x: Number) -> Number {
-        if x <= joinXVal{return e1.solve(for: x)}
-        else {return e2.solve(for: x)}
+        if x <= joinXVal { return e1.solve(for: x) }
+        else { return e2.solve(for: x) }
     }
+    
+    
+    public func withMinAndMax(of min: Number?, _ max: Number?) -> EquationUnion<Number>{
+        return EquationUnion<Number>(oldEquation: self, min: min, max: max)
+    }
+    
+    
     
     
     

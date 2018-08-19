@@ -27,9 +27,7 @@ open class HKGradientView: HKView{
     
     override open func layoutSubviews() {
         super.layoutSubviews()
-        
         gradientLayer.frame = self.bounds
-        
     }
     
     

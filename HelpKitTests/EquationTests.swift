@@ -126,12 +126,19 @@ class EquationUnionTests: XCTestCase{
         XCTAssertEqual(union2[5], 76)
         
         let union3 = AbsoluteValueEquation(xy(-1, 1), xy(-0.5, 0), xy(0, 1))!.uniting(AbsoluteValueEquation(xy(0, 1), xy(0.5, 0), xy(1, 1))!, after: 0)
+        
         XCTAssertEqual(union3[-1], 1)
         XCTAssertEqual(union3[-0.5], 0)
         XCTAssertEqual(union3[0], 1)
         XCTAssertEqual(union3[0.5], 0)
         XCTAssertEqual(union3[1], 1)
         
+    }
+    
+    func testRespectsMinAndMaxValues(){
+        let union = LinearEquation(xy(-1, -500), xy(0, 0))!.uniting(LinearEquation(xy(0, 500), xy(1, 1000))!, after: 0).withMinAndMax(of: -100, 100)
+        XCTAssertEqual(union[-1], -100)
+        XCTAssertEqual(union[1], 100)
     }
     
 }

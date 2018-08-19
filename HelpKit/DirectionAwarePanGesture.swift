@@ -42,7 +42,7 @@ open class DirectionAwarePanGesture: UIPanGestureRecognizer{
             
             let previousLocation = touches.first!.previousLocation(in: touches.first!.window)
             let currentLocation = touches.first!.location(in: touches.first!.window)
-            let translation = currentLocation.getTranslation(from: previousLocation)
+            let translation = currentLocation.getOffset(from: previousLocation)
 
             
             

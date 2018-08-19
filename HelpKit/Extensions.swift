@@ -8,10 +8,6 @@
 
 import UIKit
 
-
-
-
-
 extension UIGestureRecognizer{
     
     open func stopInterferingWithTouchesInView(){
@@ -27,31 +23,21 @@ extension UIGestureRecognizer{
     }
 }
 
-
-
-
-
-
 extension CGPoint{
     
-    public func offset(by x: CGFloat, y: CGFloat) -> CGPoint{
-        var newPoint = self
-        newPoint.x += x
-        newPoint.y += y
-        return newPoint
-    }
+
     
-    public func getTranslation(from previousPoint: CGPoint) -> CGPoint{
+    public func getOffset(from previousPoint: CGPoint) -> CGPoint{
         var newPoint = CGPoint.zero
         newPoint.x = self.x - previousPoint.x
         newPoint.y = self.y - previousPoint.y
         return newPoint
     }
     
-    public func translated(by anotherPoint: CGPoint) -> CGPoint{
+    public func offset(by anotherPoint: CGPoint) -> CGPoint{
         var newPoint = CGPoint.zero
-        newPoint.x = self.x + anotherPoint.x
-        newPoint.y = self.y + anotherPoint.y
+        newPoint.x = x + anotherPoint.x
+        newPoint.y = y + anotherPoint.y
         return newPoint
     }
 }
@@ -61,32 +47,26 @@ extension CGPoint{
 
 
 
-extension UIViewController{
-    
-    open var statusBar: UIWindow{
+
+    public var statusBar: UIWindow{
         return UIApplication.shared.value(forKey: "statusBarWindow") as! UIWindow
     }
     
     
     
-}
-
-public func editKeyboardWindows(action: (UIWindow) -> Void){
-    for window in UIApplication.shared.windows where window !== UIApplication.shared.keyWindow{
-        action(window)
-    }
-}
 
 
 
 
 
-
-extension CGFloat{
-    public var half: CGFloat{
+extension FloatingPoint{
+    public var half: Self{
         return self / 2
     }
 }
+
+
+
 
 extension UIStackView{
     
@@ -136,6 +116,10 @@ extension UIColor {
         
     }
     
+    public static func gray(percentage: CGFloat) -> UIColor{
+        return UIColor(red: percentage, green: percentage, blue: percentage, alpha: 1)
+    }
+    
     
     
     
@@ -155,6 +139,13 @@ extension UIColor {
 
 
 extension IndexPath{
+    
+    
+    public func isLastInSection(for collectionView: UICollectionView) -> Bool{
+        return self == IndexPath(row: collectionView.numberOfItems(inSection: section) - 1, section: section)
+    }
+
+    
     
     public func isLastInSection(for tableView: UITableView) -> Bool{
         return self == IndexPath(row: tableView.numberOfRows(inSection: section) - 1, section: section)
@@ -281,18 +272,14 @@ extension CGRect{
     }
     
     
-    public var centerInFrame: CGPoint{
-        
+    public var centerAsFrame: CGPoint{
         return CGPoint(x: minX + (width / 2),
                        y: minY + (height / 2))
-        
     }
     
-    public var centerInBounds: CGPoint{
-        
+    public var centerAsBounds: CGPoint{
         return CGPoint(x: width / 2,
                        y: height / 2)
-        
     }
     
     public var rightSide: CGFloat {
@@ -314,6 +301,7 @@ extension CGRect{
         get { return self.maxY }
         set { self.origin.y = newValue - self.height }
     }
+    
     
     
     
@@ -372,11 +360,24 @@ extension UIView{
         let convertedPointInBounds = superview.convert(pointInBounds, from: self)
         let convertedOrigin = superview.convert(bounds.origin, from: self)
         
-        let difference = convertedOrigin.getTranslation(from: convertedPointInBounds)
-        let newPosition = newPoint.translated(by: difference)
+        let difference = convertedOrigin.getOffset(from: convertedPointInBounds)
+        let newPosition = newPoint.offset(by: difference)
         self.frame.origin = newPosition
         
     }
+    
+    
+//    private func getViewController(of view: UIView) -> UIViewController?{
+//        if let next = next{
+//            if let next = next as? UIViewController{ return next }
+//            else { return getViewController(of: next as! UIView) }
+//        } else {return nil}
+//    }
+//    
+//    /// Returns the view controller whose view the recever either is or is a subview of.
+//    open var viewController: UIViewController?{
+//        return getViewController(of: self)
+//    }
     
     
     open var centerInFrame: CGPoint{
@@ -490,32 +491,3 @@ extension Array {
         return self.count - 1
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
