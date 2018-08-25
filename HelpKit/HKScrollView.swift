@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class HKScrollView: UIScrollView{
+open class HKScrollView: UIScrollView{
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,7 +36,7 @@ public class HKScrollView: UIScrollView{
    
     
     
-    override public var contentSize: CGSize{
+    override open var contentSize: CGSize{
         get{
             return super.contentSize
         } set {
@@ -47,7 +47,7 @@ public class HKScrollView: UIScrollView{
         }
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init coder has not been implemented")
     }
 }

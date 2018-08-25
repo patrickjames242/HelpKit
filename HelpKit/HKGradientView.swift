@@ -34,8 +34,6 @@ open class HKGradientView: HKView{
     open var gradientLayer = CAGradientLayer()
     
     
-
-    
     
     
     

@@ -94,33 +94,32 @@ extension EArray: CustomStringConvertible{
     }
 }
 
-public struct EArrayIterator<Element>: IteratorProtocol{
-    fileprivate init(earray: EArray<Element>){
-        self.earray = earray
-    }
-    
-    private var currentIndex = 0
-    
-    private let earray: EArray<Element>
-    
-    mutating public func next() -> Element? {
-        if currentIndex == earray.storage.count {return nil}
-        let elementToReturn = earray.storage[currentIndex]
-        currentIndex += 1
-        return elementToReturn
-    }
-}
+
 
 
 extension EArray: Sequence{
     
-    public typealias Iterator = EArrayIterator<Element>
-    public func makeIterator() -> EArray<Element>.Iterator {
+    public struct EArrayIterator<Element>: IteratorProtocol{
+        fileprivate init(earray: EArray<Element>){
+            self.earray = earray
+        }
         
+        private var currentIndex = 0
         
-        return EArrayIterator(earray: self)
+        private let earray: EArray<Element>
+        
+        mutating public func next() -> Element? {
+            if currentIndex == earray.storage.count {return nil}
+            let elementToReturn = earray.storage[currentIndex]
+            currentIndex += 1
+            return elementToReturn
+        }
     }
     
+    public typealias Iterator = EArrayIterator<Element>
+    public func makeIterator() -> EArray<Element>.Iterator {
+        return EArrayIterator(earray: self)
+    }
 }
 
 

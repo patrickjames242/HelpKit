@@ -10,23 +10,26 @@ import UIKit
 
 
 
+
 extension UIViewController: HKVCTransParticipator{
-    
-    
-    private func getTopMostLevelParent(for vc: UIViewController) -> UIViewController{
-        if vc.parent == nil { return vc }
-        else {return getTopMostLevelParent(for: vc.parent!)}
-    }
-    
     @objc open var viewControllerForTransition: UIViewController {
-        return getTopMostLevelParent(for: self)
+        return topMostLevelParent
     }
 }
 
 
 
+@objc public protocol HKVCTransEventAwareParticipator: HKVCTransParticipator{
+    @objc optional func prepareForPresentation()
+    @objc optional func performUnanimatedPresentationAction()
+    @objc optional func cleanUpAfterPresentation()
+    @objc optional func prepareForDismissal()
+    @objc optional func performUnanimatedDismissalAction()
+    @objc optional func cleanUpAfterDismissal()
+}
 
-public protocol HKVCTransParticipator: class {
+
+@objc public protocol HKVCTransParticipator: class {
     var viewControllerForTransition: UIViewController { get }
 }
 
@@ -51,6 +54,10 @@ open class HKVCTransBrain{
     
     open weak var container: UIView!
     
+    private func affectEventAwareParticipators(_ action: (HKVCTransEventAwareParticipator) -> Void){
+        [_presented as? HKVCTransEventAwareParticipator, _presenter as? HKVCTransEventAwareParticipator].filterOutNils().forEach { action($0) }
+    }
+    
     public required init(presenter: HKVCTransParticipator, presented: HKVCTransParticipator){
         self._presenter = presenter
         self._presented = presented
@@ -59,21 +66,32 @@ open class HKVCTransBrain{
     open func prepareForPresentation(using context: UIViewControllerContextTransitioning){
         self.context = context
         self.container = context.containerView
+        _presented.view.layoutIfNeeded()
+        affectEventAwareParticipators({$0.prepareForPresentation?()})
+        
     }
     
-    open func carryOutUnanimatedPresentationAction() { }
+    open func carryOutUnanimatedPresentationAction() {
+        affectEventAwareParticipators({$0.performUnanimatedPresentationAction?()})
+    }
     
-    open func cleanUpAfterPresentation() { }
+    open func cleanUpAfterPresentation() {
+        affectEventAwareParticipators({$0.cleanUpAfterPresentation?()})
+    }
     
-    open func prepareForDismissal() { }
+    open func prepareForDismissal() {
+        affectEventAwareParticipators({$0.prepareForDismissal?()})
+    }
     
-    open func carryOutUnanimatedDismissalAction() { }
+    open func carryOutUnanimatedDismissalAction() {
+        affectEventAwareParticipators({$0.performUnanimatedDismissalAction?()})
+    }
     
+    /// NOTE: the super implementation MUST be called AFTER the subclass's implementation of this function
     open func cleanUpAfterDismissal() {
-        
+        affectEventAwareParticipators({$0.cleanUpAfterDismissal?()})
         _presented = nil
         _presenter = nil
-        
     }
 }
 
@@ -111,9 +129,9 @@ open class HKVCTransDelegate<BrainType: HKVCTransBrain, AnimationControllerType:
 open class HKVCTransAnimationController<BrainType: HKVCTransBrain>: NSObject, UIViewControllerAnimatedTransitioning{
     
     
-    public enum Config{ case presentation, dismissal }
+    public enum HKVCTransConfig{ case presentation, dismissal }
     
-    public let config: Config
+    public let config: HKVCTransConfig
     
     open var brain: HKVCTransBrain
     
@@ -124,7 +142,7 @@ open class HKVCTransAnimationController<BrainType: HKVCTransBrain>: NSObject, UI
         return 0.4
     }
     
-    public required init(brain: HKVCTransBrain, config: Config) {
+    public required init(brain: HKVCTransBrain, config: HKVCTransConfig) {
         self.config = config
         self.brain = brain
     }

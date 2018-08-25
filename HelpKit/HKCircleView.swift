@@ -31,7 +31,7 @@ open class HKCircleView: HKView {
     
     override open func layoutSubviews() {
         super.layoutSubviews()
-        let path = UIBezierPath(arcCenter: centerInBounds, radius: bounds.width / 2, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let path = UIBezierPath(arcCenter: centerInBounds, radius: bounds.width / 2, startAngle: 0, endAngle: CGFloat.pi.doubled, clockwise: true)
         circleLayer.path = path.cgPath
     }
     

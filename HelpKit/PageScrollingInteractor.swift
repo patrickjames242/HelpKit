@@ -46,7 +46,7 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
         view.addGestureRecognizer(gesture)
     }
     
-    private var gesture: DirectionAwarePanGesture!
+    public private (set) var gesture: DirectionAwarePanGesture!
     
     
     /// When this is true, gradient changes are only reported when the gesture recognizer detects finger movement in the direction specified when this PageScrollingInteractor was initialized.

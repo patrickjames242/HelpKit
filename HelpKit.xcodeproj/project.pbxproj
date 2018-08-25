@@ -11,6 +11,7 @@
 		6005366C2118E1EA00EA490B /* CustomViewControllerTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6005366B2118E1EA00EA490B /* CustomViewControllerTransitions.swift */; };
 		6011896D20FEDAB400C87C74 /* HKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6011896C20FEDAB400C87C74 /* HKView.swift */; };
 		6011897020FEE1B100C87C74 /* HKButtonTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6011896F20FEE1B100C87C74 /* HKButtonTemplate.swift */; };
+		603957B82129FF37004AA05D /* HKLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603957B72129FF37004AA05D /* HKLayoutGuide.swift */; };
 		603C830F2112984000592E18 /* HKCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603C830E2112983F00592E18 /* HKCircleView.swift */; };
 		60470E3F20FA31A200C947E6 /* HelpKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 60470E3D20FA31A200C947E6 /* HelpKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60470E4620FA31C600C947E6 /* Pin Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60470E4520FA31C600C947E6 /* Pin Methods.swift */; };
@@ -43,6 +44,7 @@
 		6005366B2118E1EA00EA490B /* CustomViewControllerTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewControllerTransitions.swift; sourceTree = "<group>"; };
 		6011896C20FEDAB400C87C74 /* HKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKView.swift; sourceTree = "<group>"; };
 		6011896F20FEE1B100C87C74 /* HKButtonTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKButtonTemplate.swift; sourceTree = "<group>"; };
+		603957B72129FF37004AA05D /* HKLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKLayoutGuide.swift; sourceTree = "<group>"; };
 		603C830E2112983F00592E18 /* HKCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKCircleView.swift; sourceTree = "<group>"; };
 		60470E3A20FA31A200C947E6 /* HelpKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HelpKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		60470E3D20FA31A200C947E6 /* HelpKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpKit.h; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				60DED93520FE1923007DD680 /* PageScrollingInteractor.swift */,
 				60470E4520FA31C600C947E6 /* Pin Methods.swift */,
 				60920BCC21035ABF00B4AFEF /* WeakWrapper.swift */,
+				603957B72129FF37004AA05D /* HKLayoutGuide.swift */,
 			);
 			path = HelpKit;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				6011897020FEE1B100C87C74 /* HKButtonTemplate.swift in Sources */,
 				6098DD652103FDB40024C90F /* InputAccessoryViewWrapper.swift in Sources */,
 				60DED93820FE192A007DD680 /* DirectionAwarePanGesture.swift in Sources */,
+				603957B82129FF37004AA05D /* HKLayoutGuide.swift in Sources */,
 				6005366C2118E1EA00EA490B /* CustomViewControllerTransitions.swift in Sources */,
 				603C830F2112984000592E18 /* HKCircleView.swift in Sources */,
 				60920BCB21034AC900B4AFEF /* EArray.swift in Sources */,
@@ -334,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -391,7 +395,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

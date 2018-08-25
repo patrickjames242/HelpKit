@@ -15,8 +15,7 @@ public protocol WeakWrapperDelegate: class {
 
 
 
-public protocol WeakWrapperProtocol: class{
-    
+public protocol WeakWrapperProtocol: class {
     var delegate: WeakWrapperDelegate? {get set}
     var unTypedValue: AnyObject? {get}
     var unTypedSelf: NSObject {get}
