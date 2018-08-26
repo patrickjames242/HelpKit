@@ -8,10 +8,12 @@
 
 import UIKit
 
-@objc public protocol PageScrollingInteractorDelegate: UIGestureRecognizerDelegate{
+@objc public protocol PageScrollingInteractorDelegate: class{
     
     @objc optional func gradientDidSnap(fromScreen: PageScrollingInteractor.ScreenType, toScreen: PageScrollingInteractor.ScreenType, direction: ScrollingDirection, interactor: PageScrollingInteractor)
     
+    /// Called when the gradient is about to change because of the movement of the user's finger after a period of inactivity.
+    @objc optional func gradientWillBeginChanging(interactor: PageScrollingInteractor, direction: ScrollingDirection)
     
     /// gradient is expressed as a percentage from -1 to 0 to +1
     func gradientDidChange(to gradient: CGFloat, direction: ScrollingDirection, interactor: PageScrollingInteractor)
@@ -53,17 +55,17 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
     open var onlyAcceptInteractionInSpecifiedDirection = true
     
     
-    
+    /// Indicates whether or not the interactor will process events from the gesture recognizer.
     private var isActive = true
     
     
-    ///NOTE: Interactor is active by default. It only becomes deactivated if the API user deactivates it.
+    ///NOTE: Interactor is accepts touches by default. It only becomes deactivated if the API user deactivates it.
     
-    open func activate(){
+    open func startAcceptingTouches(){
         self.isActive = true
     }
     
-    open func deactivate(){
+    open func stopAcceptingTouches(){
         self.isActive = false
     }
     
@@ -73,7 +75,12 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
     
     
     @objc public enum ScreenType: Int{
-        case first = -1, center = 0, last = 1
+        /// For a horizontal interactor, 'first' is the screen on the left. For a vertical interactor, 'first' is the screen on the top.
+        case first = -1
+        case center = 0
+        
+        /// For a horizontal interactor, 'last' is the screen on the right. For a vertical interactor, 'last' is the screen on the bottom.
+        case last = 1
         
         func rawPointValue(for interactor: PageScrollingInteractor) -> CGFloat{
             return interactor.getRawPointValue(for: self)
@@ -125,6 +132,7 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
     // This function is called by users of the API and NOT BY ANYTHING IN THIS FILE!
     
     open func snapGradientTo(screen: ScreenType, animated: Bool = true){
+        pageScrollingDelegate.gradientWillBeginChanging?(interactor: self, direction: scrollingDirection)
         reportGradientSnappedTo(toScreen: screen, animationTime: animated ? 0.2 : nil)
         gesture.setTranslation(CGPoint.zero, in: view)
     }
@@ -176,10 +184,15 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
     }
     
     
-    
-    
+    /// Should be true when the user's finger is currently moving on screen or when the ending animation is still occuring.
+    private var gradientIsChanging = false
     
     private func gestureResponse_UserMovedFinger(translationX: CGFloat){
+        if gradientIsChanging.isFalse{
+            gradientIsChanging = true
+            pageScrollingDelegate.gradientWillBeginChanging?(interactor: self, direction: scrollingDirection)
+        }
+        
         let val: CGFloat
         switch currentlyFullyVisibleScreen{
         case .center:
@@ -267,6 +280,7 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
         let completion: (Bool) -> Void = { _ in
             if self.currentGradientPointValue == toScreen.rawPointValue(for: self){
                 self.pageScrollingDelegate.gradientDidSnap?(fromScreen: fromScreen, toScreen: toScreen, direction: self.scrollingDirection, interactor: self)
+                self.gradientIsChanging = false
             }
         }
         if let time = animationTime{

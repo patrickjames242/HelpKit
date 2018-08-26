@@ -11,7 +11,9 @@
 
 open class HKGradientView: HKView{
     
-    
+    public convenience override init(){
+        self.init(colors: [])
+    }
     public init(colors: [UIColor]){
         super.init(frame: CGRect.zero)
         layer.addSublayer(gradientLayer)

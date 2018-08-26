@@ -14,6 +14,7 @@ import UIKit
 
 open class DirectionAwarePanGesture: UIPanGestureRecognizer{
     
+    open weak var currentTouch: UITouch?
     
     open private(set) var scrollingDirection: ScrollingDirection?
     open private(set) var swipingDirection: SwipingDirection?
@@ -21,20 +22,31 @@ open class DirectionAwarePanGesture: UIPanGestureRecognizer{
     private var touchesMovedWasAlreadyCalled = false
     
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+        currentTouch = touches.first
         super.touchesEnded(touches, with: event)
         touchesMovedWasAlreadyCalled = false
+        
     }
     
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+        currentTouch = touches.first
         self.scrollingDirection = nil
         touchesMovedWasAlreadyCalled = false
         super.touchesBegan(touches, with: event)
+    }
+    
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
+        currentTouch = touches.first
+        super.touchesCancelled(touches, with: event)
+        touchesMovedWasAlreadyCalled = false
+        
     }
     
     
     
     
     override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
+        currentTouch = touches.first
 
         if !touchesMovedWasAlreadyCalled{
 

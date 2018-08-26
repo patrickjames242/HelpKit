@@ -68,6 +68,7 @@ open class HKVCTransBrain{
         self.container = context.containerView
         _presented.view.layoutIfNeeded()
         affectEventAwareParticipators({$0.prepareForPresentation?()})
+        _presenter.view.isUserInteractionEnabled = false
         
     }
     
@@ -90,8 +91,10 @@ open class HKVCTransBrain{
     /// NOTE: the super implementation MUST be called AFTER the subclass's implementation of this function
     open func cleanUpAfterDismissal() {
         affectEventAwareParticipators({$0.cleanUpAfterDismissal?()})
+        _presenter.view.isUserInteractionEnabled = true
         _presented = nil
         _presenter = nil
+        
     }
 }
 
