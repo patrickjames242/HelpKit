@@ -101,9 +101,9 @@ class QuadradicEquationTests: XCTestCase{
         
         let equation2 = QuadraticEquation(xy(1,2), xy(2,2), xy(3, 2))!
         
-        XCTAssertEqual(equation2.solve(for: 1).rounded(), 2)
-        XCTAssertEqual(equation2.solve(for: 2).rounded(), 2)
-        XCTAssertEqual(equation2.solve(for: 3).rounded(), 2)
+        XCTAssertEqual(equation2[1].rounded(), 2)
+        XCTAssertEqual(equation2[2].rounded(), 2)
+        XCTAssertEqual(equation2[3].rounded(), 2)
     }
     
     func testRespectsMinAndMaxValues(){

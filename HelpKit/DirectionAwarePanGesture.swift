@@ -10,11 +10,13 @@ import UIKit
 
 
 @objc public enum ScrollingDirection: Int { case horizontal = 0, vertical }
-@objc public enum SwipingDirection: Int{ case towardTop = 0, towardBottom, towardLeft, towardRight }
+@objc public enum SwipingDirection: Int { case towardTop = 0, towardBottom, towardLeft, towardRight }
 
 open class DirectionAwarePanGesture: UIPanGestureRecognizer{
     
     open weak var currentTouch: UITouch?
+    
+    open var randomVariable: String?
     
     open private(set) var scrollingDirection: ScrollingDirection?
     open private(set) var swipingDirection: SwipingDirection?

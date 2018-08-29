@@ -17,7 +17,7 @@ public struct EArray<Element>{
     fileprivate var storage = [Int: Element]()
     
     public init(array: Array<Element>) {
-        self.append(contentsOf: array)
+        iterateThrough(array, extractValue: {$0})
     }
     
     public init() { }

@@ -23,6 +23,15 @@ extension UIGestureRecognizer{
     }
 }
 
+public struct HKError: LocalizedError{
+    public static var unknownError = HKError(description: "An unknown error occured.")
+
+    public var errorDescription: String?
+    public init(description: String){
+        self.errorDescription = description
+    }
+}
+
 
 
 
@@ -56,8 +65,7 @@ extension CGPoint{
         return lhs.offset(by: -rhs)
     }
     
-    
-    
+
     public func getOffset(from point: CGPoint) -> CGPoint{
         return self - point
     }
@@ -76,9 +84,9 @@ extension CGPoint{
 
 
 
-    public var statusBar: UIWindow{
-        return UIApplication.shared.value(forKey: "statusBarWindow") as! UIWindow
-    }
+public var statusBar: UIWindow{
+    return UIApplication.shared.value(forKey: "statusBarWindow") as! UIWindow
+}
     
     
     
@@ -451,6 +459,14 @@ extension Numeric{
 
 extension UIViewController{
     
+    open func present(_ vc: UIViewController){
+        self.present(vc, animated: true)
+    }
+    
+    open func dismiss(){
+        dismiss(animated: true)
+    }
+    
     private func getTopMostLevelParent(for vc: UIViewController) -> UIViewController{
         if vc.parent == nil { return vc }
         else {return getTopMostLevelParent(for: vc.parent!)}
@@ -513,9 +529,13 @@ extension Sequence {
 
 extension String{
     
+    public var isValidEmail: Bool{
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: self)
+    }
     
-    
-    public func removeWhiteSpaces() -> String{
+    public func withTrimmedWhiteSpaces() -> String{
         return self.trimmingCharacters(in: .whitespacesAndNewlines)
         
     }
@@ -561,6 +581,9 @@ public protocol HKOptionalProtocol{
 }
 
 extension Optional: HKOptionalProtocol{
+    public var isNotNil: Bool{
+        return self != nil
+    }
     public var isNil: Bool{
         return self == nil
     }

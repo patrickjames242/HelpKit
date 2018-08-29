@@ -47,8 +47,8 @@ extension HKVCTransParticipator{
 
 open class HKVCTransBrain{
     
-    open var _presented: HKVCTransParticipator!
-    open var _presenter: HKVCTransParticipator!
+    open weak var _presented: HKVCTransParticipator!
+    open weak var _presenter: HKVCTransParticipator!
     
     open weak var context: UIViewControllerContextTransitioning!
     
@@ -92,10 +92,10 @@ open class HKVCTransBrain{
     open func cleanUpAfterDismissal() {
         affectEventAwareParticipators({$0.cleanUpAfterDismissal?()})
         _presenter.view.isUserInteractionEnabled = true
-        _presented = nil
-        _presenter = nil
         
     }
+    
+    
 }
 
 

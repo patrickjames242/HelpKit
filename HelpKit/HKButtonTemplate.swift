@@ -18,7 +18,7 @@ open class HKButtonTemplate: UIControl{
         addTarget(self, action: #selector(tapCancelled), for: [.touchCancel, .touchDragExit, .touchDragOutside])
         addTarget(self, action: #selector(carryOutButtonAction), for: .touchUpInside)
     }
-    /// As far as I can remember, I don't think this does anything.... um, I can't remember why I did this...
+    /// As far as I can remember, I don't think this does anything.... um, I can't remember why I did this... So I'll just leave it here for now.
     open override var next: UIResponder?{
         return UIView()
     }
