@@ -45,7 +45,6 @@ open class WeakWrapper<Value: AnyObject>: NSObject, WeakWrapperProtocol{
     public init(_ value: Value){
         self.value = value
     }
-    
 }
 
 extension Array where Element: WeakWrapper<AnyObject>{

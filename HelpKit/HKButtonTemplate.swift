@@ -33,6 +33,7 @@ open class HKButtonTemplate: UIControl{
         return activationArea()?.contains(point) ?? bounds.contains(point)
     }
     
+    /// This is done to prevent subviews from receiving touch information.
     open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if self.point(inside: point, with: event) && isUserInteractionEnabled && !isHidden && alpha > 0{
             return self

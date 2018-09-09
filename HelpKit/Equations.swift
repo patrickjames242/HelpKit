@@ -212,9 +212,4 @@ public class EquationUnion<Number: BinaryFloatingPoint>: Equation<Number>{
     public func withMinAndMax(of min: Number?, _ max: Number?) -> EquationUnion<Number>{
         return EquationUnion<Number>(oldEquation: self, min: min, max: max)
     }
-    
-    
-    
-    
-    
 }

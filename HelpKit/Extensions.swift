@@ -8,6 +8,60 @@
 
 import UIKit
 
+
+
+
+
+
+//public class HKValueBox<ValueType>{
+//    
+//    public var value: ValueType{
+//        didSet{ actions.forEach{$0(value)} }
+//    }
+//    
+//    public init(_ value: ValueType){ self.value = value }
+//    
+//    private var actions = [(ValueType) -> Void]()
+//    private var senders = [AnyObject]()
+//    
+//    func addListener(sender: AnyObject, _ action: @escaping (ValueType) -> Void ){
+//        actions.append(action)
+//        senders.append(sender)
+//    }
+//    
+//    func removeListender(sender: AnyObject){
+//        let x = 0
+//        for i in senders{
+//            if i === sender{
+//                
+//            }
+//            x += 1
+//        }
+//    }
+//    
+//}
+
+
+
+
+
+
+
+public func handleErrorWithPrintStatement(action: () throws -> Void){
+    do{ try action() } catch { print(error) }
+}
+
+public enum HKCompletionResult<ResultType>{
+    case success(ResultType)
+    case failure(Error)
+}
+
+public enum HKFailableCompletion{
+    case success
+    case failure(Error)
+}
+
+
 extension UIGestureRecognizer{
     
     open func stopInterferingWithTouchesInView(){
@@ -20,6 +74,11 @@ extension UIGestureRecognizer{
         cancelsTouchesInView = true
         delaysTouchesBegan = true
         delaysTouchesEnded = true
+    }
+    
+    open func cancelCurrentTouch(){
+        isEnabled = false
+        isEnabled = true
     }
 }
 
@@ -80,7 +139,16 @@ extension CGPoint{
 
 
 
-
+extension UIWindow{
+    
+   
+    
+    open func dismissAllPresentedViewControllers(){
+        if let root = rootViewController{
+            root.dismissAllPresentedViewControllers()
+        }
+    }
+}
 
 
 
@@ -98,6 +166,16 @@ public var statusBar: UIWindow{
 extension FloatingPoint{
     public var half: Self{
         return self / 2
+    }
+}
+
+extension Numeric{
+    public var doubled: Self{
+        return self * 2
+    }
+    
+    public var tripled: Self{
+        return self * 3
     }
 }
 
@@ -150,13 +228,6 @@ extension UIColor {
     public static func gray(percentage: CGFloat) -> UIColor{
         return UIColor(red: percentage, green: percentage, blue: percentage, alpha: 1)
     }
-    
-    
-    
-    
-    
-    
-    
 }
 
 
@@ -276,20 +347,10 @@ extension UIImage{
 
 
 
-//MARK: - CONVERT DEGREES TO RADIANS
-extension BinaryInteger {
-    public var degreesToRadians: CGFloat { return CGFloat(Int(self)) * .pi / 180 }
-}
-
-extension FloatingPoint {
-    public var degreesToRadians: Self { return self * .pi / 180 }
-    public var radiansToDegrees: Self { return self * 180 / .pi }
-}
 
 
 
 
-// MARK: - BOOL TOGGLE FUNCTION
 extension Bool{
     /// Changes value of the receiver to the opposite of what it currently is.
     public mutating func toggle(){
@@ -449,13 +510,7 @@ extension UIView{
 }
 
 
-extension Numeric{
-    
-    /// Returns the result of the receiver multiplied by 2.
-    var doubled: Self {
-        return self * 2
-    }
-}
+
 
 extension UIViewController{
     
@@ -468,12 +523,26 @@ extension UIViewController{
     }
     
     private func getTopMostLevelParent(for vc: UIViewController) -> UIViewController{
-        if vc.parent == nil { return vc }
+        if vc.parent.isNil { return vc }
         else {return getTopMostLevelParent(for: vc.parent!)}
     }
     /// Returns the highest parent in the viewController heirarchy
     open var topMostLevelParent: UIViewController{
         return getTopMostLevelParent(for: self)
+    }
+    
+    
+    
+    public func dismissAllPresentedViewControllers(){
+        if self.presentedViewController.isNil{
+            return
+        } else if let presented = self.presentedViewController, presented.presentedViewController.isNil{
+            presented.dismiss(animated: false, completion: {
+                if let presenting = self.presentingViewController{
+                    presenting.dismissAllPresentedViewControllers()
+                }
+            })
+        } else { self.presentedViewController!.dismissAllPresentedViewControllers() }
     }
     
     
@@ -515,15 +584,6 @@ extension Sequence {
 
 
 
-
-
-
-
-
-
-
-
-
 //MARK: - REMOVE WHITE SPACES
 
 
@@ -538,6 +598,20 @@ extension String{
     public func withTrimmedWhiteSpaces() -> String{
         return self.trimmingCharacters(in: .whitespacesAndNewlines)
         
+    }
+    
+    public var asURL: URL?{
+        return URL(string: self)
+    }
+    
+    public mutating func capitalizeFirstLetter(){
+        self = prefix(1).uppercased() + self.dropFirst()
+    }
+    
+    public func capitalizingFirstLetter() -> String{
+        var string = self
+        string.capitalizeFirstLetter()
+        return string
     }
     
     

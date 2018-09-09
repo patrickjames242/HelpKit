@@ -17,16 +17,11 @@ open class InputAccessoryViewWrapper: HKView{
 
     open private(set) var backgroundView = UIView()
     
-    
     private var _intrinsicContentSize: CGSize
-    
-    
+
     open override var intrinsicContentSize: CGSize{
-        get{
-            return _intrinsicContentSize
-        } set{
-            _intrinsicContentSize = newValue
-        }
+        get { return _intrinsicContentSize }
+        set { _intrinsicContentSize = newValue }
     }
     
     
@@ -38,7 +33,6 @@ open class InputAccessoryViewWrapper: HKView{
         backgroundView = view
         backgroundView.pinAllSides(addTo: self, pinTo: self)
         sendSubviewToBack(backgroundView)
-        
     }
     
     

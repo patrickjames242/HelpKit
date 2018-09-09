@@ -19,6 +19,8 @@ extension UIViewController: HKVCTransParticipator{
 
 
 
+
+
 @objc public protocol HKVCTransEventAwareParticipator: HKVCTransParticipator{
     @objc optional func prepareForPresentation()
     @objc optional func performUnanimatedPresentationAction()
@@ -27,6 +29,9 @@ extension UIViewController: HKVCTransParticipator{
     @objc optional func performUnanimatedDismissalAction()
     @objc optional func cleanUpAfterDismissal()
 }
+
+
+
 
 
 @objc public protocol HKVCTransParticipator: class {
@@ -50,7 +55,6 @@ open class HKVCTransBrain{
     open weak var _presented: HKVCTransParticipator!
     open weak var _presenter: HKVCTransParticipator!
     
-    open weak var context: UIViewControllerContextTransitioning!
     
     open weak var container: UIView!
     
@@ -64,7 +68,6 @@ open class HKVCTransBrain{
     }
     
     open func prepareForPresentation(using context: UIViewControllerContextTransitioning){
-        self.context = context
         self.container = context.containerView
         _presented.view.layoutIfNeeded()
         affectEventAwareParticipators({$0.prepareForPresentation?()})
@@ -176,7 +179,14 @@ open class HKVCTransAnimationController<BrainType: HKVCTransBrain>: NSObject, UI
             }
         }
         
-        getAnimator()(duration, action, {_ in completion()})
+        if transitionContext.isAnimated{
+               getAnimator()(duration, action, {_ in completion()})
+        } else {
+            action()
+            completion()
+        }
+        
+        
     }
     
     open func getAnimator() -> (_ duration: TimeInterval, _ action: @escaping () -> Void, _ completion: @escaping (Bool) -> Void) -> Void{

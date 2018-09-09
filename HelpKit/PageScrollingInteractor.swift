@@ -56,17 +56,17 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
     
     
     /// Indicates whether or not the interactor will process events from the gesture recognizer.
-    private var isActive = true
+    private(set) var isAcceptingTouches = true
     
     
     ///NOTE: Interactor is accepts touches by default. It only becomes deactivated if the API user deactivates it.
     
     open func startAcceptingTouches(){
-        self.isActive = true
+        self.isAcceptingTouches = true
     }
     
     open func stopAcceptingTouches(){
-        self.isActive = false
+        self.isAcceptingTouches = false
     }
     
     
@@ -144,7 +144,7 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
     open var multiplier: CGFloat = 1.3
     
     @objc private func respondToGesture(gesture: DirectionAwarePanGesture){
-        if !self.isActive{return}
+        if !self.isAcceptingTouches{return}
         
         if onlyAcceptInteractionInSpecifiedDirection{
             if gesture.scrollingDirection != self.scrollingDirection{return}
@@ -211,10 +211,7 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
             }
             val = min(gradientValues.last - translationX, gradientValues.last)
         }
-        
         reportGradientChangeTo(newGradientPointValue: val)
-        
-        
     }
     
     private func gestureResponse_UserLiftedFinger(velocity: CGFloat){
