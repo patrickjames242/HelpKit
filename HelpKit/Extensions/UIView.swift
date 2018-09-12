@@ -94,4 +94,8 @@ extension UIView{
         return bounds.height / 2
     }
     
+    open func removeAllSubviews(){
+        subviews.forEach{$0.removeFromSuperview()}
+    }
+    
 }
