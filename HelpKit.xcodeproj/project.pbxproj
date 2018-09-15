@@ -53,6 +53,9 @@
 		609BE6F62144AFC0004911EE /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609BE6F52144AFC0004911EE /* Character.swift */; };
 		609BE6F82144AFD0004911EE /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609BE6F72144AFD0004911EE /* UILabel.swift */; };
 		60B506752108057400A9E94A /* Equations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B506742108057400A9E94A /* Equations.swift */; };
+		60C5190A2149CFC3002C5926 /* CoreDataTableViewVMTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C519082149CFC2002C5926 /* CoreDataTableViewVMTemplate.swift */; };
+		60C5190B2149CFC3002C5926 /* CoreDataListVM_Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C519092149CFC3002C5926 /* CoreDataListVM_Helpers.swift */; };
+		60C51911214AD092002C5926 /* NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C51910214AD092002C5926 /* NSPersistentContainer.swift */; };
 		60D92738213F48BE00ECE17A /* HKCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D92737213F48BE00ECE17A /* HKCache.swift */; };
 		60D9273A213F511E00ECE17A /* HKCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D92739213F511E00ECE17A /* HKCacheTests.swift */; };
 		60DED93620FE1923007DD680 /* PageScrollingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DED93520FE1923007DD680 /* PageScrollingInteractor.swift */; };
@@ -120,6 +123,9 @@
 		609BE6F52144AFC0004911EE /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		609BE6F72144AFD0004911EE /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		60B506742108057400A9E94A /* Equations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equations.swift; sourceTree = "<group>"; };
+		60C519082149CFC2002C5926 /* CoreDataTableViewVMTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewVMTemplate.swift; sourceTree = "<group>"; };
+		60C519092149CFC3002C5926 /* CoreDataListVM_Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataListVM_Helpers.swift; sourceTree = "<group>"; };
+		60C51910214AD092002C5926 /* NSPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentContainer.swift; sourceTree = "<group>"; };
 		60D92737213F48BE00ECE17A /* HKCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCache.swift; sourceTree = "<group>"; };
 		60D92739213F511E00ECE17A /* HKCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCacheTests.swift; sourceTree = "<group>"; };
 		60DED93520FE1923007DD680 /* PageScrollingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageScrollingInteractor.swift; sourceTree = "<group>"; };
@@ -167,27 +173,28 @@
 		60470E3C20FA31A200C947E6 /* HelpKit */ = {
 			isa = PBXGroup;
 			children = (
+				60C5190C2149CFCC002C5926 /* CoreDataViewModel */,
 				609BE6C62144AC1C004911EE /* Extensions */,
-				60470E3D20FA31A200C947E6 /* HelpKit.h */,
-				60470E3E20FA31A200C947E6 /* Info.plist */,
 				6005366B2118E1EA00EA490B /* CustomViewControllerTransitions.swift */,
 				60DED93720FE192A007DD680 /* DirectionAwarePanGesture.swift */,
 				60920BCA21034AC900B4AFEF /* EArray.swift */,
 				60B506742108057400A9E94A /* Equations.swift */,
+				60470E3D20FA31A200C947E6 /* HelpKit.h */,
 				6011896F20FEE1B100C87C74 /* HKButtonTemplate.swift */,
+				60D92737213F48BE00ECE17A /* HKCache.swift */,
 				603C830E2112983F00592E18 /* HKCircleView.swift */,
 				600042982111157F00350F2E /* HKGradientView.swift */,
+				603957B72129FF37004AA05D /* HKLayoutGuide.swift */,
 				607C79CA210C15D7005F3A78 /* HKNotifications.swift */,
 				604A789720FA41A800E5257D /* HKScrollView.swift */,
 				6011896C20FEDAB400C87C74 /* HKView.swift */,
+				60470E3E20FA31A200C947E6 /* Info.plist */,
 				6098DD642103FDB40024C90F /* InputAccessoryViewWrapper.swift */,
 				605F1B7E20FC13F4003CCD0B /* iOS Screen Sizes.swift */,
+				60DED93D20FE19A8007DD680 /* Other.swift */,
 				60DED93520FE1923007DD680 /* PageScrollingInteractor.swift */,
 				60470E4520FA31C600C947E6 /* Pin Methods.swift */,
 				60920BCC21035ABF00B4AFEF /* WeakWrapper.swift */,
-				603957B72129FF37004AA05D /* HKLayoutGuide.swift */,
-				60D92737213F48BE00ECE17A /* HKCache.swift */,
-				60DED93D20FE19A8007DD680 /* Other.swift */,
 			);
 			path = HelpKit;
 			sourceTree = "<group>";
@@ -218,6 +225,7 @@
 				609BE6DB2144AD78004911EE /* IndexPath.swift */,
 				609BE6EF2144AF7F004911EE /* MutableCollection.swift */,
 				609BE6D72144AD40004911EE /* NSLayoutConstraint.swift */,
+				60C51910214AD092002C5926 /* NSPersistentContainer.swift */,
 				609BE6D32144AD1B004911EE /* Numeric.swift */,
 				609BE6C72144AC70004911EE /* Optional.swift */,
 				609BE6F12144AF98004911EE /* Sequence.swift */,
@@ -236,6 +244,15 @@
 				609BE6CF2144ACED004911EE /* UIWindow.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		60C5190C2149CFCC002C5926 /* CoreDataViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				60C519082149CFC2002C5926 /* CoreDataTableViewVMTemplate.swift */,
+				60C519092149CFC3002C5926 /* CoreDataListVM_Helpers.swift */,
+			);
+			path = CoreDataViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,10 +392,12 @@
 				60DED93820FE192A007DD680 /* DirectionAwarePanGesture.swift in Sources */,
 				603957B82129FF37004AA05D /* HKLayoutGuide.swift in Sources */,
 				609BE6EA2144AE22004911EE /* CGRect.swift in Sources */,
+				60C5190A2149CFC3002C5926 /* CoreDataTableViewVMTemplate.swift in Sources */,
 				609BE6EE2144AF5E004911EE /* UIViewController.swift in Sources */,
 				609BE6CC2144ACC2004911EE /* UIScrollView.swift in Sources */,
 				6005366C2118E1EA00EA490B /* CustomViewControllerTransitions.swift in Sources */,
 				609BE6CA2144AC97004911EE /* UIGestureRecognizer.swift in Sources */,
+				60C5190B2149CFC3002C5926 /* CoreDataListVM_Helpers.swift in Sources */,
 				609BE6E02144ADA4004911EE /* UIEdgeInsets.swift in Sources */,
 				609BE6E62144ADFC004911EE /* UIImage.swift in Sources */,
 				603C830F2112984000592E18 /* HKCircleView.swift in Sources */,
@@ -389,6 +408,7 @@
 				609BE6D82144AD40004911EE /* NSLayoutConstraint.swift in Sources */,
 				609BE6DC2144AD78004911EE /* IndexPath.swift in Sources */,
 				609BE6E42144ADEA004911EE /* UIImageView.swift in Sources */,
+				60C51911214AD092002C5926 /* NSPersistentContainer.swift in Sources */,
 				60920BCD21035ABF00B4AFEF /* WeakWrapper.swift in Sources */,
 				605F1B7F20FC13F4003CCD0B /* iOS Screen Sizes.swift in Sources */,
 				609BE6C82144AC70004911EE /* Optional.swift in Sources */,

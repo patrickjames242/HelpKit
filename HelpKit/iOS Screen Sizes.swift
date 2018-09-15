@@ -10,6 +10,9 @@
 
 
 public let iPhoneXSize = CGSize(width: 375, height: 812)
+public let iPhoneXMaxSize = CGSize(width: 414, height: 896)
+public let iPhoneXRSize = CGSize(width: 414, height: 896)
+
 public let iPhoneSESize = CGSize(width: 320, height: 568)
 public let iPhoneSize = CGSize(width: 375, height: 667)
 public let iPhonePlusSize = CGSize(width: 414, height: 736)

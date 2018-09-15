@@ -23,7 +23,7 @@ extension UIScrollView{
     open func scrollToBottom(animated: Bool = true) -> Void {
         layoutIfNeeded()
         
-        let totalHeight = self.adjustedContentInset.top + self.contentSize.height + self.adjustedContentInset.bottom
+        let totalHeight = self.contentSize.height + self.adjustedContentInset.bottom
         if totalHeight < self.bounds.height{return}
         let inset = totalHeight - self.frame.height
         let offset = CGPoint(x: 0, y: inset)
