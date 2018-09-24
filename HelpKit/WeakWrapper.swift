@@ -22,6 +22,7 @@ public protocol WeakWrapperProtocol: class {
 }
 
 
+
 /// This class allows you to place class instances in arrays without worry that the array will prevent the instances from being deallocated.
 open class WeakWrapper<Value: AnyObject>: NSObject, WeakWrapperProtocol{
     

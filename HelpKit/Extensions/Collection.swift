@@ -15,5 +15,15 @@ extension Collection{
         if index < 0 || index > count - 1 { return nil }
         return count - 1 - index
     }
+    
+    public func item(at index: Index) -> Element?{
+        if indices.contains(index){
+            return self[index]
+        } else {return nil}
+    }
+    
+
+    
+    
 }
 

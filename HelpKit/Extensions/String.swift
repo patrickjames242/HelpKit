@@ -10,6 +10,14 @@ import UIKit
 
 extension String{
     
+    
+    public func height(withFixedWidthOf width: CGFloat, font: UIFont) -> CGFloat{
+        let size = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        let boundingRectSize = NSString(string: self).boundingRect(with: size, options: options, attributes: [.font : font], context: nil).size
+        return boundingRectSize.height
+    }
+    
     public var isValidEmail: Bool{
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -18,7 +26,6 @@ extension String{
     
     public func withTrimmedWhiteSpaces() -> String{
         return self.trimmingCharacters(in: .whitespacesAndNewlines)
-        
     }
     
     public var asURL: URL?{

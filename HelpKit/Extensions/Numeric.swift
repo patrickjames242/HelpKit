@@ -9,6 +9,7 @@
 import UIKit
 
 extension Numeric{
+    
     public var doubled: Self{
         return self * 2
     }

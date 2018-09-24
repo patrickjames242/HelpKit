@@ -14,31 +14,31 @@ import UIKit
 
 
 //public class HKValueBox<ValueType>{
-//    
+//
 //    public var value: ValueType{
 //        didSet{ actions.forEach{$0(value)} }
 //    }
-//    
+//
 //    public init(_ value: ValueType){ self.value = value }
-//    
+//
 //    private var actions = [(ValueType) -> Void]()
 //    private var senders = [AnyObject]()
-//    
+//
 //    func addListener(sender: AnyObject, _ action: @escaping (ValueType) -> Void ){
 //        actions.append(action)
 //        senders.append(sender)
 //    }
-//    
-//    func removeListender(sender: AnyObject){
+//
+//    func removeListener(sender: AnyObject){
 //        let x = 0
 //        for i in senders{
 //            if i === sender{
-//                
+//
 //            }
 //            x += 1
 //        }
 //    }
-//    
+//
 //}
 
 

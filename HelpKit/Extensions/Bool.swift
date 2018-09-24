@@ -9,6 +9,8 @@
 import UIKit
 
 extension Bool{
+    
+    
     /// Changes value of the receiver to the opposite of what it currently is.
     public mutating func toggle(){
         self = !self

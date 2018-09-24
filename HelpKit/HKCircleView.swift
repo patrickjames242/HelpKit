@@ -27,7 +27,7 @@ open class HKCircleView: HKView {
         }
     }
     
-    let circleLayer = CAShapeLayer()
+    public let circleLayer = CAShapeLayer()
     
     override open func layoutSubviews() {
         super.layoutSubviews()

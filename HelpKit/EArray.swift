@@ -33,18 +33,20 @@ public struct EArray<Element>{
         return arrayToReturn as! [Element]
     }
     
-
-    
-    public mutating func iterateThrough<X, Y: Sequence>(_ sequence: Y, extractValue: (X) -> Element?) where Y.Element == X{
+    public mutating func iterateThrough<X, Y: Sequence>(_ sequence: Y, extractValue: (_ currentIndex: Int, X) -> Element?) where Y.Element == X{
         var z = storage.count
         
-        for y in sequence{
+        for (num, y) in sequence.enumerated(){
             
-            if let result = extractValue(y){
+            if let result = extractValue(num, y){
                 self.storage[z] = result
                 z += 1
             } else {continue}
         }
+    }
+    
+    public mutating func iterateThrough<X, Y: Sequence>(_ sequence: Y, extractValue: (X) -> Element?) where Y.Element == X{
+      iterateThrough(sequence, extractValue: {extractValue($1)})
     }
     
     public mutating func addBatch (numberOfTimes: Int, extractValue: @autoclosure () -> Element){
@@ -117,7 +119,8 @@ extension EArray: Sequence{
     }
     
     public typealias Iterator = EArrayIterator<Element>
-    public func makeIterator() -> EArray<Element>.Iterator {
+    
+    public func makeIterator() -> Iterator {
         return EArrayIterator(earray: self)
     }
 }

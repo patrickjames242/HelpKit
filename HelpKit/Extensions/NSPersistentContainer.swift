@@ -21,20 +21,14 @@ extension NSPersistentContainer{
             
             otherContext?.perform {
                 otherContext?.mergeChanges(fromContextDidSave:note)
-
             }
-        
         }
         
         NotificationCenter.default.addObserver(forName: .NSManagedObjectContextDidSave, object: otherContext, queue: nil) { [weak newContext] (note) in
             
             newContext?.perform {
-                
                 newContext?.mergeChanges(fromContextDidSave: note) }
             }
-            
-            
-        
         return newContext
     }
     

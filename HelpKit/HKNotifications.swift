@@ -17,7 +17,7 @@ extension HKNotification where ActionParameterType == Void{
  
     Still not convinced of it's usefulness?
  
-    Well imagine you have a HUGE app with several notifications and several persons listening for those notifications, expecting certain types of information. At some point, your probably gonna forget to send the appropriate userInfo objects when you post the notification or something... and god help you if your listeners are doing some force unwrapping. Your app will go bye bye.
+    Well imagine you have a HUGE app with several notifications and several persons listening for those notifications, expecting certain types of information. At some point, your probably gonna forget to send the appropriate userInfo objects when you post the notification or something...  and it also get's annoying to have to do all that force unwrapping and casting everytime you want to read the info in the user info dict.
  
     Well, no need to worry!!! HKNotification has type safety for days!!! The compiler won't allow you to post a notification without the expected user information along with it.
 **/

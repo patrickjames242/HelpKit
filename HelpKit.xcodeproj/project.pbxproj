@@ -19,6 +19,7 @@
 		60470E3F20FA31A200C947E6 /* HelpKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 60470E3D20FA31A200C947E6 /* HelpKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60470E4620FA31C600C947E6 /* Pin Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60470E4520FA31C600C947E6 /* Pin Methods.swift */; };
 		604A789820FA41A800E5257D /* HKScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A789720FA41A800E5257D /* HKScrollView.swift */; };
+		6059CF8221534B570039B79D /* HKManagedObjectObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6059CF8121534B570039B79D /* HKManagedObjectObserver.swift */; };
 		605F1B7F20FC13F4003CCD0B /* iOS Screen Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F1B7E20FC13F4003CCD0B /* iOS Screen Sizes.swift */; };
 		6061C473211F3A97002F83CA /* HelpKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60470E3A20FA31A200C947E6 /* HelpKit.framework */; };
 		6061C47A211F3AB2002F83CA /* EquationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6061C479211F3AB2002F83CA /* EquationTests.swift */; };
@@ -52,6 +53,7 @@
 		609BE6F42144AFAD004911EE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609BE6F32144AFAD004911EE /* String.swift */; };
 		609BE6F62144AFC0004911EE /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609BE6F52144AFC0004911EE /* Character.swift */; };
 		609BE6F82144AFD0004911EE /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609BE6F72144AFD0004911EE /* UILabel.swift */; };
+		60A8EF8F214F3F3B007CDBC0 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A8EF8E214F3F3B007CDBC0 /* UserDefaults.swift */; };
 		60B506752108057400A9E94A /* Equations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B506742108057400A9E94A /* Equations.swift */; };
 		60C5190A2149CFC3002C5926 /* CoreDataTableViewVMTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C519082149CFC2002C5926 /* CoreDataTableViewVMTemplate.swift */; };
 		60C5190B2149CFC3002C5926 /* CoreDataListVM_Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C519092149CFC3002C5926 /* CoreDataListVM_Helpers.swift */; };
@@ -88,6 +90,7 @@
 		60470E3E20FA31A200C947E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60470E4520FA31C600C947E6 /* Pin Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin Methods.swift"; sourceTree = "<group>"; };
 		604A789720FA41A800E5257D /* HKScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKScrollView.swift; sourceTree = "<group>"; };
+		6059CF8121534B570039B79D /* HKManagedObjectObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKManagedObjectObserver.swift; sourceTree = "<group>"; };
 		605F1B7E20FC13F4003CCD0B /* iOS Screen Sizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOS Screen Sizes.swift"; sourceTree = "<group>"; };
 		6061C46E211F3A97002F83CA /* HelpKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelpKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6061C472211F3A97002F83CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 		609BE6F32144AFAD004911EE /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		609BE6F52144AFC0004911EE /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		609BE6F72144AFD0004911EE /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		60A8EF8E214F3F3B007CDBC0 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		60B506742108057400A9E94A /* Equations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equations.swift; sourceTree = "<group>"; };
 		60C519082149CFC2002C5926 /* CoreDataTableViewVMTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewVMTemplate.swift; sourceTree = "<group>"; };
 		60C519092149CFC3002C5926 /* CoreDataListVM_Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataListVM_Helpers.swift; sourceTree = "<group>"; };
@@ -173,13 +177,13 @@
 		60470E3C20FA31A200C947E6 /* HelpKit */ = {
 			isa = PBXGroup;
 			children = (
+				60470E3D20FA31A200C947E6 /* HelpKit.h */,
 				60C5190C2149CFCC002C5926 /* CoreDataViewModel */,
 				609BE6C62144AC1C004911EE /* Extensions */,
 				6005366B2118E1EA00EA490B /* CustomViewControllerTransitions.swift */,
 				60DED93720FE192A007DD680 /* DirectionAwarePanGesture.swift */,
 				60920BCA21034AC900B4AFEF /* EArray.swift */,
 				60B506742108057400A9E94A /* Equations.swift */,
-				60470E3D20FA31A200C947E6 /* HelpKit.h */,
 				6011896F20FEE1B100C87C74 /* HKButtonTemplate.swift */,
 				60D92737213F48BE00ECE17A /* HKCache.swift */,
 				603C830E2112983F00592E18 /* HKCircleView.swift */,
@@ -195,6 +199,7 @@
 				60DED93520FE1923007DD680 /* PageScrollingInteractor.swift */,
 				60470E4520FA31C600C947E6 /* Pin Methods.swift */,
 				60920BCC21035ABF00B4AFEF /* WeakWrapper.swift */,
+				6059CF8121534B570039B79D /* HKManagedObjectObserver.swift */,
 			);
 			path = HelpKit;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				609BE6EB2144AF47004911EE /* UIView.swift */,
 				609BE6ED2144AF5E004911EE /* UIViewController.swift */,
 				609BE6CF2144ACED004911EE /* UIWindow.swift */,
+				60A8EF8E214F3F3B007CDBC0 /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 				60B506752108057400A9E94A /* Equations.swift in Sources */,
 				609BE6F82144AFD0004911EE /* UILabel.swift in Sources */,
 				609BE6D42144AD1B004911EE /* Numeric.swift in Sources */,
+				6059CF8221534B570039B79D /* HKManagedObjectObserver.swift in Sources */,
 				609BE6D02144ACED004911EE /* UIWindow.swift in Sources */,
 				60470E4620FA31C600C947E6 /* Pin Methods.swift in Sources */,
 				607C79CB210C15D7005F3A78 /* HKNotifications.swift in Sources */,
@@ -405,6 +412,7 @@
 				609BE6DE2144AD8D004911EE /* CGSize.swift in Sources */,
 				602DA9C82148BC8700E60038 /* Collection.swift in Sources */,
 				60920BCB21034AC900B4AFEF /* EArray.swift in Sources */,
+				60A8EF8F214F3F3B007CDBC0 /* UserDefaults.swift in Sources */,
 				609BE6D82144AD40004911EE /* NSLayoutConstraint.swift in Sources */,
 				609BE6DC2144AD78004911EE /* IndexPath.swift in Sources */,
 				609BE6E42144ADEA004911EE /* UIImageView.swift in Sources */,
