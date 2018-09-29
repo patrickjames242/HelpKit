@@ -14,9 +14,9 @@ final public class HKManagedObjectObserver: NSObject{
     public enum ChangeType{ case update, delete }
     
     
-    public init?(object: NSManagedObject, changeHandler: @escaping (ChangeType?) -> Void){
+    public init?(object: NSManagedObject, changeHandler: @escaping (_ changeInfo: ChangeType?) -> Void) {
         guard let context = object.managedObjectContext else {return nil}
-       super.init()
+        super.init()
         NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: context, queue: nil, using: {[weak self, weak object] (notification) in
             guard let self = self, let object = object else{return}
             let change = self.getChangeTypeUsing(notification: notification, object: object)

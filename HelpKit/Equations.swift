@@ -39,7 +39,7 @@ public struct xy<Number: BinaryFloatingPoint>: Equatable{
 public typealias CGEquation = Equation<CGFloat>
 
 
-
+/// This is just the abstract superclass of all Equation classes.
 public class Equation<Number: BinaryFloatingPoint>{
     
     
@@ -115,6 +115,15 @@ public class LinearEquation<Number: BinaryFloatingPoint>: Equation<Number>{
 }
 
 
+
+
+
+
+
+
+
+
+
 public typealias CGQuadEquation = QuadraticEquation<CGFloat>
 
 public class QuadraticEquation<Number: BinaryFloatingPoint>: Equation<Number>{
@@ -146,6 +155,22 @@ public class QuadraticEquation<Number: BinaryFloatingPoint>: Equation<Number>{
         return (a * Number(pow(Double(x), 2))) + (b * x) + c
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 public typealias CGAbsEquation = AbsoluteValueEquation<CGFloat>
 
@@ -184,6 +209,15 @@ public class AbsoluteValueEquation<Number: BinaryFloatingPoint>: Equation<Number
     }
 }
 
+
+
+
+
+
+
+
+
+/// Joins two equations, such that at some specified point, EquationUnion stop evaluating the first equation to produce the y value and instead uses the second equation.
 
 public class EquationUnion<Number: BinaryFloatingPoint>: Equation<Number>{
     
