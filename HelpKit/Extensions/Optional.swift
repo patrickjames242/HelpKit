@@ -16,12 +16,8 @@ public protocol HKOptionalProtocol{
 }
 
 extension Optional: HKOptionalProtocol{
-    public var isNotNil: Bool{
-        return self != nil
-    }
-    public var isNil: Bool{
-        return self == nil
-    }
+    public var isNotNil: Bool { return self != nil }
+    public var isNil: Bool { return self == nil }
 }
 
 extension Sequence where Element: HKOptionalProtocol{

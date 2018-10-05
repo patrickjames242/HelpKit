@@ -22,3 +22,13 @@ extension MutableCollection {
         }
     }
 }
+
+
+extension MutableCollection where Element: Equatable{
+    
+    mutating public func removeElementsEqual(to value: Element){
+        self = self.filter({$0 != value}) as! Self
+
+    }
+    
+}

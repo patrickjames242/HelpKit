@@ -54,4 +54,15 @@ extension Array {
     
 }
 
+extension Array where Element: Equatable{
+    
+    public func indices(of item: Element) -> [Index]{
+        var indices = [Int]()
+        for (num, item1) in self.enumerated(){
+            if item1 == item{indices.append(num)}
+        }
+        return indices
+    }
+}
+
 

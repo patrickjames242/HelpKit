@@ -31,12 +31,28 @@ public class HKCache<KeyType: Hashable, ValueType>{
     }
     
     
-    public func set(value: ValueType, forKey key: KeyType){
-        objectDict[key] = value
-        if keyArray.contains(key).isFalse { keyArray.append(key) }
+    public func set(value: ValueType?, forKey key: KeyType){
+        if let value = value{
+            objectDict[key] = value
+            if keyArray.contains(key).isFalse { keyArray.append(key) }
+        } else {
+            objectDict[key] = nil
+            if let index = keyArray.firstIndex(of: key){
+                keyArray.remove(at: index)
+            }
+            
+
+            
+        }
+        
     }
     
     public func valueFor(key: KeyType) -> ValueType?{
         return objectDict[key]
+    }
+    
+    public subscript(_ key: KeyType) -> ValueType?{
+        get{ return valueFor(key: key) }
+        set{set(value: newValue, forKey: key)}
     }
 }

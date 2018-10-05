@@ -69,7 +69,6 @@ open class HKVCTransBrain{
     
     open func prepareForPresentation(using context: UIViewControllerContextTransitioning){
         self.container = context.containerView
-        _presented.view.layoutIfNeeded()
         affectEventAwareParticipators({$0.prepareForPresentation?()})
         _presenter.view.isUserInteractionEnabled = false
         

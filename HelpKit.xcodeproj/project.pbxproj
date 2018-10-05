@@ -18,6 +18,7 @@
 		603C830F2112984000592E18 /* HKCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603C830E2112983F00592E18 /* HKCircleView.swift */; };
 		60470E3F20FA31A200C947E6 /* HelpKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 60470E3D20FA31A200C947E6 /* HelpKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		60470E4620FA31C600C947E6 /* Pin Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60470E4520FA31C600C947E6 /* Pin Methods.swift */; };
+		604869412161918400DECBB0 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604869402161918400DECBB0 /* FileManager.swift */; };
 		604A789820FA41A800E5257D /* HKScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604A789720FA41A800E5257D /* HKScrollView.swift */; };
 		6059CF8221534B570039B79D /* HKManagedObjectObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6059CF8121534B570039B79D /* HKManagedObjectObserver.swift */; };
 		605F1B7F20FC13F4003CCD0B /* iOS Screen Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605F1B7E20FC13F4003CCD0B /* iOS Screen Sizes.swift */; };
@@ -89,6 +90,7 @@
 		60470E3D20FA31A200C947E6 /* HelpKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpKit.h; sourceTree = "<group>"; };
 		60470E3E20FA31A200C947E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60470E4520FA31C600C947E6 /* Pin Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pin Methods.swift"; sourceTree = "<group>"; };
+		604869402161918400DECBB0 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		604A789720FA41A800E5257D /* HKScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKScrollView.swift; sourceTree = "<group>"; };
 		6059CF8121534B570039B79D /* HKManagedObjectObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKManagedObjectObserver.swift; sourceTree = "<group>"; };
 		605F1B7E20FC13F4003CCD0B /* iOS Screen Sizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOS Screen Sizes.swift"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				609BE6DD2144AD8D004911EE /* CGSize.swift */,
 				609BE6F52144AFC0004911EE /* Character.swift */,
 				602DA9C72148BC8700E60038 /* Collection.swift */,
+				604869402161918400DECBB0 /* FileManager.swift */,
 				609BE6D12144AD01004911EE /* FloatingPoint.swift */,
 				609BE6DB2144AD78004911EE /* IndexPath.swift */,
 				609BE6EF2144AF7F004911EE /* MutableCollection.swift */,
@@ -371,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				604869412161918400DECBB0 /* FileManager.swift in Sources */,
 				609BE6CE2144ACD6004911EE /* CGPoint.swift in Sources */,
 				609BE6DA2144AD5B004911EE /* UIColor.swift in Sources */,
 				609BE6F42144AFAD004911EE /* String.swift in Sources */,

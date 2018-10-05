@@ -55,10 +55,11 @@ public class CoreDataListViewVM<Delegate: CoreDataListViewVMDelegate>: NSObject,
         
         super.init()
         
-        if let listView = listView as? UICollectionView{
-            listView.dataSource = self
-        } else if let listView = listView as? UITableView{
-            listView.dataSource = self
+        
+        switch listView{
+        case let list as UICollectionView: list.dataSource = self
+        case let list as UITableView: list.dataSource = self
+        default: break
         }
         
         listView?.register(Delegate.CellType.self, forCellReuseIdentifier: cellID)
@@ -116,7 +117,6 @@ public class CoreDataListViewVM<Delegate: CoreDataListViewVMDelegate>: NSObject,
         }
         
         listViewUpdates.append((type, action))
-        
     }
     
     
@@ -126,8 +126,8 @@ public class CoreDataListViewVM<Delegate: CoreDataListViewVMDelegate>: NSObject,
             updates.forEach{$0.1()}
         }, completion: {(success) in
             self.delegate?.coreDataUpdatesOcurred(updates: updates.map{$0.0})
-        })
 
+        })
         self.listViewUpdates = []
     }
     
@@ -146,9 +146,6 @@ public class CoreDataListViewVM<Delegate: CoreDataListViewVMDelegate>: NSObject,
     }
     
     
-    
-    
-
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return objects.count
