@@ -59,6 +59,7 @@
 		60C5190A2149CFC3002C5926 /* CoreDataTableViewVMTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C519082149CFC2002C5926 /* CoreDataTableViewVMTemplate.swift */; };
 		60C5190B2149CFC3002C5926 /* CoreDataListVM_Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C519092149CFC3002C5926 /* CoreDataListVM_Helpers.swift */; };
 		60C51911214AD092002C5926 /* NSPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C51910214AD092002C5926 /* NSPersistentContainer.swift */; };
+		60D72CCB216994D3000C1E78 /* HKBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D72CCA216994D3000C1E78 /* HKBox.swift */; };
 		60D92738213F48BE00ECE17A /* HKCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D92737213F48BE00ECE17A /* HKCache.swift */; };
 		60D9273A213F511E00ECE17A /* HKCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D92739213F511E00ECE17A /* HKCacheTests.swift */; };
 		60DED93620FE1923007DD680 /* PageScrollingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DED93520FE1923007DD680 /* PageScrollingInteractor.swift */; };
@@ -132,6 +133,7 @@
 		60C519082149CFC2002C5926 /* CoreDataTableViewVMTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewVMTemplate.swift; sourceTree = "<group>"; };
 		60C519092149CFC3002C5926 /* CoreDataListVM_Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataListVM_Helpers.swift; sourceTree = "<group>"; };
 		60C51910214AD092002C5926 /* NSPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentContainer.swift; sourceTree = "<group>"; };
+		60D72CCA216994D3000C1E78 /* HKBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKBox.swift; sourceTree = "<group>"; };
 		60D92737213F48BE00ECE17A /* HKCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCache.swift; sourceTree = "<group>"; };
 		60D92739213F511E00ECE17A /* HKCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKCacheTests.swift; sourceTree = "<group>"; };
 		60DED93520FE1923007DD680 /* PageScrollingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageScrollingInteractor.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				60470E4520FA31C600C947E6 /* Pin Methods.swift */,
 				60920BCC21035ABF00B4AFEF /* WeakWrapper.swift */,
 				6059CF8121534B570039B79D /* HKManagedObjectObserver.swift */,
+				60D72CCA216994D3000C1E78 /* HKBox.swift */,
 			);
 			path = HelpKit;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				60DED93620FE1923007DD680 /* PageScrollingInteractor.swift in Sources */,
 				609BE6E22144ADCE004911EE /* Array.swift in Sources */,
 				600042992111157F00350F2E /* HKGradientView.swift in Sources */,
+				60D72CCB216994D3000C1E78 /* HKBox.swift in Sources */,
 				609BE6F62144AFC0004911EE /* Character.swift in Sources */,
 				60B506752108057400A9E94A /* Equations.swift in Sources */,
 				609BE6F82144AFD0004911EE /* UILabel.swift in Sources */,

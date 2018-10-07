@@ -50,8 +50,7 @@ extension Array {
         return (invertedRangeEndIndex...lastItemIndex!).map{item(at: $0)}.filterOutNils()
     }
     
-    
-    
+
 }
 
 extension Array where Element: Equatable{
