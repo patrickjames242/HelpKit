@@ -12,9 +12,10 @@ extension UIWindow{
     
     
     
-    open func dismissAllPresentedViewControllers(){
+    open func dismissAllPresentedViewControllers(completion: (() -> Void)? = nil){
         if let root = rootViewController{
-            root.dismissAllPresentedViewControllers()
-        }
+            root.dismissAllPresentedViewControllers(completion: completion)
+        } else {completion?()}
+        
     }
 }

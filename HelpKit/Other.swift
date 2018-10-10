@@ -50,9 +50,7 @@ import UIKit
 public func handleErrorWithPrintStatement(action: () throws -> Void){
     do{ try action() } catch { print(error) }
 }
-public func handleErrorWithCrash(action: () throws -> Void){
-    do{try action()} catch {assertionFailure("An error was thrown")}
-}
+
 
 public enum HKCompletionResult<ResultType>{
     case success(ResultType)

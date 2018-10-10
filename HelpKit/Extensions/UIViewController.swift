@@ -29,16 +29,17 @@ extension UIViewController{
     
     
     
-    public func dismissAllPresentedViewControllers(){
+    public func dismissAllPresentedViewControllers(completion: (() -> Void)? = nil){
         if self.presentedViewController.isNil{
+            completion?()
             return
         } else if let presented = self.presentedViewController, presented.presentedViewController.isNil{
             presented.dismiss(animated: false, completion: {
                 if let presenting = self.presentingViewController{
-                    presenting.dismissAllPresentedViewControllers()
-                }
+                    presenting.dismissAllPresentedViewControllers(completion: completion)
+                } else {completion?()}
             })
-        } else { self.presentedViewController!.dismissAllPresentedViewControllers() }
+        } else { self.presentedViewController!.dismissAllPresentedViewControllers(completion: completion) }
     }
     
     
