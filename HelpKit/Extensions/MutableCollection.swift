@@ -11,6 +11,8 @@ import UIKit
 
 extension MutableCollection {
     /// Shuffles the contents of this collection.
+    
+    
     public mutating func shuffle() {
         let c = count
         guard c > 1 else { return }

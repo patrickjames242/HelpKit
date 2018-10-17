@@ -17,7 +17,9 @@ extension Numeric{
     public var tripled: Self{
         return self * 3
     }
-    
+    public var quadrupled: Self{
+        return self * 4
+    }
     
 }
 

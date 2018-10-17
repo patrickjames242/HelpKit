@@ -24,6 +24,10 @@ final public class HKManagedObjectObserver: NSObject{
         })
     }
     
+    public func stopObserving() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -63,3 +67,4 @@ extension NSManagedObject{
     
     
 }
+

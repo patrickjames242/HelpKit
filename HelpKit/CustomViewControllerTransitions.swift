@@ -20,7 +20,7 @@ extension UIViewController: HKVCTransParticipator{
 
 
 
-
+/// There's a problem with this protocol.Usually I mean for these functions to get called on a view controller that is currently being presented or dismissed. However, they will still be called even if the conforming vc is the presenting vc instead of the vc being presented. Sometimes I want this to happen, and other times I don't. In the times that I don't, I don't remember to check whether or not the vc is the one being presented, which results in weird things happening at times. I don't feel like fixing it right now, so this is a reminder.
 @objc public protocol HKVCTransEventAwareParticipator: HKVCTransParticipator{
     @objc optional func prepareForPresentation()
     @objc optional func performUnanimatedPresentationAction()

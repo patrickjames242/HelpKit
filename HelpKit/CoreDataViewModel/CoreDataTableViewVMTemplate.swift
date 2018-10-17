@@ -17,11 +17,13 @@ public protocol CoreDataListViewVMDelegate: class {
     var fetchRequest: NSFetchRequest<ObjectType> { get }
     func configureCell(_ cell: CellType, at indexPath: IndexPath, for object:  ObjectType)
     func coreDataUpdatesOcurred(updates: [NSFetchedResultsChangeType])
+    func contentDidChange()
 }
 
 
 public extension CoreDataListViewVMDelegate{
     func coreDataUpdatesOcurred(updates: [NSFetchedResultsChangeType]){}
+    func contentDidChange(){}
 }
 
 /// Neither UITableView nor UICollectionView updates the cell content when the cells are being moved. Cells that conform to this Protocol will be notified manually when updates are needed.
@@ -129,6 +131,7 @@ public class CoreDataListViewVM<Delegate: CoreDataListViewVMDelegate>: NSObject,
 
         })
         self.listViewUpdates = []
+        delegate?.contentDidChange()
     }
     
     

@@ -59,7 +59,7 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
     private(set) var isAcceptingTouches = true
     
     
-    ///NOTE: Interactor is accepts touches by default. It only becomes deactivated if the API user deactivates it.
+    ///NOTE: Interactor accepts touches by default. It only becomes deactivated if the API user deactivates it.
     
     open func startAcceptingTouches(){
         self.isAcceptingTouches = true
@@ -82,12 +82,12 @@ open class PageScrollingInteractor: NSObject, UIGestureRecognizerDelegate{
         /// For a horizontal interactor, 'last' is the screen on the right. For a vertical interactor, 'last' is the screen on the bottom.
         case last = 1
         
-        func rawPointValue(for interactor: PageScrollingInteractor) -> CGFloat{
+        func rawPointValue(for interactor: PageScrollingInteractor) -> CGFloat {
             return interactor.getRawPointValue(for: self)
         }
     }
     
-    private func getRawPointValue(for screenType: ScreenType) -> CGFloat{
+    private func getRawPointValue(for screenType: ScreenType) -> CGFloat {
         view.layoutIfNeeded()
         let frame = view.frame
         let x: CGFloat

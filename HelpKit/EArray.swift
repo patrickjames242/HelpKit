@@ -102,7 +102,7 @@ extension EArray: CustomStringConvertible{
 extension EArray: Sequence{
     
     public struct EArrayIterator<Element>: IteratorProtocol{
-        fileprivate init(earray: EArray<Element>){
+        fileprivate init(earray: EArray<Element>) {
             self.earray = earray
         }
         
