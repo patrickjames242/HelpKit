@@ -8,6 +8,29 @@
 import CoreData
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 public protocol CoreDataListViewVMDelegate: class {
     associatedtype CellType: UIView
     associatedtype ListViewType: CelledListView
