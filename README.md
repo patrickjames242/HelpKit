@@ -17,3 +17,13 @@ to this...
 ```swift
    view2.pin(addTo: view1, anchors: [.left: view1.rightAnchor, .top: view1.topAnchor, .bottom: view1.bottomAnchor], constants: [.left: 10, .width: 30])
 ```
+
+## Equations
+
+Linear and Absolute Value equations are especially helpful when constructing heavily interactive user interfaces. For this reason I have made it easy to define such equations in code and 'solve for x.' Here's how it would be used.
+
+```swift
+   let equation = LinearEquation<CGFloat>(xy(0, 4), xy(1, 5))!
+   print(equation[0.5]) // prints 4.5
+```
+
