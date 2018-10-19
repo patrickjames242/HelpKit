@@ -41,6 +41,8 @@ NotificationCenter in Foundation is, in my opinion, a pain, and code for posting
        print(args.userID)
        print(args.username)
    }
+   
+   UserDidSignInNotification.removeListener(sender: self)
 
 ```
 
