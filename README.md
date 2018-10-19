@@ -29,7 +29,7 @@ Linear and Absolute Value equations are especially helpful when constructing hea
 
 ## HKNotification
 
-NotificationCenter in Foundation is, in my opinion, a pain, and code for posting and observing notifications are often very verbose. In addition, there is no type safety with regards to accessing information stored in the notification's userInfo property. HKNotification solves these issues with concise method calls and generics, which provides type-safe information along with the notification. For example...
+NotificationCenter in Foundation is, in my opinion, a pain, and code for posting and observing notifications is often very verbose. In addition, there is no type safety with regards to accessing information stored in the notification's userInfo property. HKNotification solves these issues with concise method calls and generics, which provides type-safe information along with the notification. For example...
 
 ```swift
 
