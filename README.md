@@ -48,7 +48,7 @@ NotificationCenter in Foundation is, in my opinion, a pain, and code for posting
 
 ## CoreDataListViewVM
 
-This class encapsulates NSFetchedResultsController and UITableViewDataSource code and reduces boilerplait code in collectionView and tableView controllers. It automatically updates the UI based on Core Data changes by setting itself as the dataSource of the collectionView or tableView. You would use it like this...
+This class encapsulates NSFetchedResultsController and UITableViewDataSource code and reduces boilerplait code in collectionView and tableView controllers. It automatically updates the UI based on Core Data changes by setting itself as the dataSource of the collectionView or tableView. Basically all you need to do is set up the fetch request and write code to configure the cell. You would use it like this...
 
 ```swift
 class MyCustomCellType: UITableViewCell{}
@@ -71,7 +71,7 @@ extension ViewController: CoreDataListViewVMDelegate{
     
     var fetchRequest: NSFetchRequest<User> {
         let fetchRequest = NSFetchRequest<User>(entityName: "User")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "firstName", ascending: true)]
         return fetchRequest
     }
     
