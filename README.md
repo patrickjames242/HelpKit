@@ -1,5 +1,5 @@
 # HelpKit
-HelpKit is a library of various class extensions and convenience classes and functions that I have come to find useful in developing iOS applications. Below are just a few examples.
+HelpKit is a library of various extensions and convenience classes and functions that I have come to find useful in developing iOS applications. Below are just a few examples.
 
 ## Pins
 Pins represent several convenience extension methods on UIView and UILayoutGuide that simplify the process of setting constraints.
