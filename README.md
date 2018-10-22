@@ -48,7 +48,7 @@ NotificationCenter in Foundation is, in my opinion, a pain, and code for posting
 
 ## CoreDataListViewVM
 
-This generic class encapsulates NSFetchedResultsController and UITableViewDataSource code and reduces boilerplait code in collectionView and tableView controllers. It automatically updates the UI based on Core Data changes by setting itself as the dataSource of the collectionView or tableView and inserting, updating, moving, or deleting cells as needed. Basically all you need to do is set up the fetch request and write code to configure each cell. You would use it like this...
+This generic class encapsulates NSFetchedResultsController and UITableViewDataSource code and reduces boilerplate code in collectionView and tableView controllers. It automatically updates the UI based on Core Data changes by setting itself as the dataSource of the collectionView or tableView and inserting, updating, moving, or deleting cells as needed. Basically all you need to do is set up the fetch request and write code to configure each cell. You would use it like this...
 
 ```swift
 class MyCustomCellType: UITableViewCell{}
