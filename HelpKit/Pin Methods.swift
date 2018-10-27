@@ -193,17 +193,17 @@ public class Pins{
     fileprivate init(){ }
     
     
-    public var left: NSLayoutConstraint?
-    public var right: NSLayoutConstraint?
+    fileprivate(set) public var left: NSLayoutConstraint?
+    fileprivate(set) public var right: NSLayoutConstraint?
     
-    public var top: NSLayoutConstraint?
-    public var bottom: NSLayoutConstraint?
+    fileprivate(set) public var top: NSLayoutConstraint?
+    fileprivate(set) public var bottom: NSLayoutConstraint?
     
-    public var height: NSLayoutConstraint?
-    public var width: NSLayoutConstraint?
+    fileprivate(set) public var height: NSLayoutConstraint?
+    fileprivate(set) public var width: NSLayoutConstraint?
     
-    public var centerX: NSLayoutConstraint?
-    public var centerY: NSLayoutConstraint?
+    fileprivate(set) public var centerX: NSLayoutConstraint?
+    fileprivate(set) public var centerY: NSLayoutConstraint?
     
     
     public var all: [NSLayoutConstraint]{
